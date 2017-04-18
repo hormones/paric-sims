@@ -1,12 +1,12 @@
 $(document).ready(function() {
-	$(function() {
+/*	$(function() {
 		loginlog();
-	});
+	});*/
 
-	$(".showLoginlog").click(function() {
+/*	$(".showLoginlog").click(function() {
 		$(".showContent").empty();
 		loginlog();
-	});
+	});*/
 
 	function loginlog() {
 		$.post("dist/txt/loginlog.txt", function(data) {

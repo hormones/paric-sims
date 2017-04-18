@@ -34,7 +34,7 @@ $(document).ready(function() {
 });
 
 function loginCheck(){
-	if($("#user").val()=="" || $("#password").val()==""){
+	if($("#userno").val()=="" || $("#userpwd").val()==""){
 		alert("账号或密码不能为空！");
 		return false;
 	}

@@ -21,10 +21,10 @@ public class Student extends BaseModel implements Serializable  {
 	 */
 	private static final long serialVersionUID = 1981083654062194506L;
 	
-	private String stuno;//学号
+	private String userno;//学号
 	private String stuemail;//邮箱
 	private String stuIDnumber;//身份证号码
-	private String stupwd;//密码
+	private String userpwd;//密码
 	private String stucollege;//学院
 	private String studepartment;//专业
 	private String stunationality;//民族
@@ -40,11 +40,11 @@ public class Student extends BaseModel implements Serializable  {
 	//ManyToMany---Teacher
 	private List<Teacher> teacherList;
 
-	public String getStuno() {
-		return stuno;
+	public String getUserno() {
+		return userno;
 	}
-	public void setStuno(String stuno) {
-		this.stuno = stuno;
+	public void setUserno(String userno) {
+		this.userno = userno;
 	}
 
 	public String getStuemail() {
@@ -61,11 +61,11 @@ public class Student extends BaseModel implements Serializable  {
 		this.stuIDnumber = stuIDnumber;
 	}
 	
-	public String getStupwd() {
-		return stupwd;
+	public String getUserpwd() {
+		return userpwd;
 	}
-	public void setStupwd(String stupwd) {
-		this.stupwd = stupwd;
+	public void setUserpwd(String userpwd) {
+		this.userpwd = userpwd;
 	}
 	
 	public String getStucollege() {

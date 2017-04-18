@@ -23,36 +23,36 @@
 </head>
 <body>
 	<div class="container">
-		<form class="form-horizontal" role="form" action="login" method="post" >
+		<form class="form-horizontal" role="form" action="login.do?dispatch=login" method="post" >
 			<div class="form-group">
 				<div class="col-sm-8 col-sm-offset-2">
 					<h1 align="center">学生信息管理系统</h1>
 				</div>
 			</div>
 			<div class="form-group">
-				<label for="user" class="col-sm-offset-2 col-sm-2 control-label">账号：</label>
+				<label for="userno" class="col-sm-offset-2 col-sm-2 control-label">账号：</label>
 				<div class="col-sm-4">
-					<input type="text" class="form-control" id="user" name="user"
+					<input type="text" class="form-control" id="userno" name="userno"
 						placeholder="请输入账号">
 				</div>
 			</div>
 			<div class="form-group">
-				<label for="password" class="col-sm-offset-2 col-sm-2 control-label">密码：</label>
+				<label for="userpwd" class="col-sm-offset-2 col-sm-2 control-label">密码：</label>
 				<div class="col-sm-4">
-					<input type="password" class="form-control" id="password" name="password"
+					<input type="password" class="form-control" id="userpwd" name="userpwd"
 						placeholder="请输入密码">
 				</div>
 			</div>
 			<div class="form-group">
 				<div class="col-sm-offset-4 col-sm-4">
 					<label class="radio-inline"> <input type="radio"
-						name="identity" checked="checked" value="student">
+						name="identity" checked="checked" value="Student">
 						学生
 					</label> <label class="radio-inline"> <input type="radio"
-						name="identity" value="teacher">
+						name="identity" value="Teacher">
 						教师
 					</label> <label class="radio-inline"> <input type="radio"
-						name="identity" value="administrator">
+						name="identity" value="Administrator">
 						管理员
 					</label>
 				</div>

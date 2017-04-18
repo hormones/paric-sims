@@ -19,24 +19,25 @@ public class Teacher extends BaseModel implements Serializable  {
 	 */
 	private static final long serialVersionUID = -7321616712237387305L;
 	
-	private String teachergh;//工号
-	private String teacherpwd;//密码
+	private String userno;//工号
+	
+	private String userpwd;//密码
 	
 	//ManyToMany---Student
 	private List<Student> studentList;
 	
-	public String getTeachergh() {
-		return teachergh;
+	public String getUserno() {
+		return userno;
 	}
-	public void setTeachergh(String teachergh) {
-		this.teachergh = teachergh;
+	public void setUserno(String userno) {
+		this.userno = userno;
 	}
 	
-	public String getTeacherpwd() {
-		return teacherpwd;
+	public String getUserpwd() {
+		return userpwd;
 	}
-	public void setTeacherpwd(String teacherpwd) {
-		this.teacherpwd = teacherpwd;
+	public void setUserpwd(String userpwd) {
+		this.userpwd = userpwd;
 	}
 	
 	@ManyToMany(cascade=CascadeType.MERGE,fetch=FetchType.LAZY,targetEntity=Student.class)
