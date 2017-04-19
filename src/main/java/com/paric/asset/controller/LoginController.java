@@ -4,16 +4,18 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.paric.asset.model.BaseCharacter;
 import com.paric.asset.model.Student;
+import com.paric.asset.service.BaseCharacterService;
 import com.paric.asset.service.LoginService;
 
 
@@ -21,8 +23,12 @@ import com.paric.asset.service.LoginService;
 @RequestMapping("/login.do")
 public class LoginController {
 	
-	@Resource
+	@Autowired
 	private LoginService loginService;
+	
+	@SuppressWarnings("rawtypes")
+	@Autowired
+	private BaseCharacterService baseCharacterService;
 	
 	//登陆
 	@SuppressWarnings({ "unchecked", "rawtypes" })
@@ -33,24 +39,27 @@ public class LoginController {
 		String userpwd = request.getParameter("userpwd");
 		String identity = request.getParameter("identity");
 		Class clazz = Class.forName("com.paric.asset.model."+identity);
-		Object loginUser = loginService.login(userno, userpwd, clazz);
+		BaseCharacter loginUser = (BaseCharacter) baseCharacterService.login(clazz, userno, userpwd);
 		if(loginUser!=null){
 			HttpSession session = request.getSession(true);
 			session.setAttribute("loginUser", loginUser);
 			session.setAttribute("identity", identity);
 			System.out.println("登陆通过...");
-			if(identity.equals("Student")){
-				return "studentIndex";
-			} else if(identity.equals("Teacher")){
-				return "teacherIndex";
-			} else if(identity.equals("Administrator")){
-				return "administratorIndex";
-			}
+			//将identity首字母小写并拼接成页面的名字
+			char[] cs=identity.toCharArray();
+	        cs[0] += 32;
+	        String Character = String.valueOf(cs)+"Index";
+			return Character;
 		} else{
 			System.out.println("登陆失败...");
 		}
 		return "redirect:login.jsp";
-		
+	}
+
+	//跳转到修改密码页面
+	@RequestMapping(params = "dispatch=revisePwdPage")
+	public String showRevisePwdPage(HttpServletRequest request, HttpServletResponse response){
+		return "revisePwdPage";
 	}
 	
 	//验证旧密码
@@ -123,27 +132,21 @@ public class LoginController {
 		return "redirect:login.jsp";
 	}
 	
-	//跳转到修改密码页面
-	@RequestMapping(params = "dispatch=revisePwdPage")
-	public String showRevisePwdPage(HttpServletRequest request, HttpServletResponse response){
-		return "revisePwd";
-	}
-	
 	//查看某个学生信息页面
 	@RequestMapping(params = "dispatch=stuSearch")
 	@ResponseBody
 	public Map<String, Object> stuSearch(HttpServletRequest request, HttpServletResponse response){
-		String stuno = request.getParameter("stuno");
+		String userno = request.getParameter("userno");
 		Map<String, Object> map = new HashMap<String, Object>();
-		List<Student> list = loginService.stuSearch(stuno);
+		List<Student> list = loginService.stuSearch(userno);
 		map.put("success", true);
 		map.put("result", list);
 		return map;
 	}
 	
 	//跳转到查看某个学生信息页面
-	@RequestMapping(params = "dispatch=studentInfo")
+	@RequestMapping(params = "dispatch=viewStudentInfo")
 	public String studentInfo(HttpServletRequest request, HttpServletResponse response){
-		return "studentInfo";
+		return "studentInfoPage";
 	}
 }

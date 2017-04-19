@@ -1,15 +1,15 @@
 $(document).ready(function() {
 	$("#revisePwdLink").click(function() {
-		$(".showContent").load("revisePwd");
+		$(".showContent").load("login.do?dispatch=revisePwdPage");
 	});
 	
 	//检索学生信息
 	$("#stuSearchBtn").click(function(){
-		$.post("stuSearch",{"stuno":$("#stuSearch").val()},function(data){
+		$.post("login.do?dispatch=stuSearch",{"userno":$("#stuSearch").val()},function(data){
 			if(data.success){
 				if(data.result[0]!=null){
-					$(".showContent").load("studentInfo",function(e){
-						$("#stuno").val(data.result[0].stuno);
+					$(".showContent").load("login.do?dispatch=viewStudentInfo",function(e){
+						$("#userno").val(data.result[0].userno);
 						$("#stuname").val(data.result[0].stuname);
 						$("#stunationality").val(data.result[0].stunationality);
 						$("#stusex").val(data.result[0].stusex);

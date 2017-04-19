@@ -13,32 +13,14 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name="teacher")
-public class Teacher extends BaseModel implements Serializable  {
+public class Teacher extends BaseCharacter implements Serializable  {
 	/**
 	 * 
 	 */
 	private static final long serialVersionUID = -7321616712237387305L;
 	
-	private String userno;//工号
-	
-	private String userpwd;//密码
-	
 	//ManyToMany---Student
 	private List<Student> studentList;
-	
-	public String getUserno() {
-		return userno;
-	}
-	public void setUserno(String userno) {
-		this.userno = userno;
-	}
-	
-	public String getUserpwd() {
-		return userpwd;
-	}
-	public void setUserpwd(String userpwd) {
-		this.userpwd = userpwd;
-	}
 	
 	@ManyToMany(cascade=CascadeType.MERGE,fetch=FetchType.LAZY,targetEntity=Student.class)
 	@JoinTable(name="teacher_student",joinColumns={@JoinColumn(name="s_id")},inverseJoinColumns={@JoinColumn(name="t_id")})

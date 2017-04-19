@@ -3,8 +3,8 @@ package com.paric.asset.other;
 import java.util.List;
 
 import javax.annotation.Resource;
-import javax.servlet.http.HttpSession;
 
+import org.apache.log4j.Category;
 import org.apache.log4j.Logger;
 import org.hibernate.Query;
 import org.hibernate.SessionFactory;
@@ -18,9 +18,12 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.paric.asset.dao.BaseDao;
 import com.paric.asset.model.Administrator;
+import com.paric.asset.model.BaseCharacter;
 import com.paric.asset.model.Student;
 import com.paric.asset.model.Teacher;
+import com.paric.asset.service.BaseCharacterService;
 import com.paric.asset.service.LoginService;
+import com.paric.asset.service.StudentService;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(locations = {"classpath*:spring/spring.xml","classpath*:spring/spring-hibernate.xml"})
@@ -29,25 +32,33 @@ public class BaseTest {
 	
 	protected static final Logger logger = Logger.getLogger(BaseTest.class);
 	
-	@Autowired
+	@Resource
 	protected SessionFactory sessionFactory;
 	
 	@SuppressWarnings("rawtypes")
 	@Autowired
 	private BaseDao baseDao;
 	
-	@Resource
+	@Autowired
 	private LoginService loginService;
+	
+	@SuppressWarnings("rawtypes")
+	@Autowired
+	private BaseCharacterService baseCharacterService;
+	
+	@Autowired
+	private StudentService studentService;
 	
 	@SuppressWarnings("unchecked")
 	@Test
 	@Rollback(false)
 	public void test_1(){
-		Administrator administrator = new Administrator();
-		administrator.setName("王大锤");
-		administrator.setUserno("admin");
-		administrator.setUserpwd("123456");
-		baseDao.save(administrator);
+//		Administrator administrator = new Administrator();
+//		administrator.setName("王大锤");
+//		administrator.setUserno("admin");
+//		administrator.setUserpwd("123456");
+//		baseDao.save(administrator);
+		System.out.println("----");
 	}
 	
 	@SuppressWarnings("unchecked")
@@ -95,20 +106,42 @@ public class BaseTest {
 	@Test
 	@Rollback(true)
 	public void test_5(){
-		String identity = "Administrator";
-		String userno = "admin";
+		//String identity = "Administrator",userno="admin";
+		String identity = "Teacher",userno="60001";
+		//String identity = "Student",userno="2017001";
 		String userpwd = "123456";
 		Class clazz;
 		try {
 			clazz = Class.forName("com.paric.asset.model."+identity);
-			Object loginUser = loginService.login(userno, userpwd, clazz);
+			BaseCharacter loginUser = loginService.login(userno, userpwd, clazz);
 			if(loginUser!=null){
+				String name = loginUser.getName();
+				System.out.println(name);
 				System.out.println("登陆通过...");
 			} else{
 				System.out.println("登陆失败...");
 			}
 		} catch (ClassNotFoundException e) {
 			e.printStackTrace();
+		}
+	}
+	
+	@Test
+	@Rollback(true)
+	public void test_6(){
+		Student student = studentService.findByUserno(Student.class, "2017001");
+		if(student!=null){
+			logger.debug("结果是："+student.getStuclass());
+		}
+	}
+	
+	@SuppressWarnings("unchecked")
+	@Test
+	@Rollback(true)
+	public void test_7(){
+		BaseCharacter character = (BaseCharacter) baseCharacterService.findByUserno(Student.class, "2017001");
+		if(character!=null){
+			logger.debug("结果是："+((Student)character).getStuemail());
 		}
 	}
 	

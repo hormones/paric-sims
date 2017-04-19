@@ -15,16 +15,14 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name="student")
-public class Student extends BaseModel implements Serializable  {
+public class Student extends BaseCharacter implements Serializable  {
 	/**
 	 * 
 	 */
 	private static final long serialVersionUID = 1981083654062194506L;
 	
-	private String userno;//学号
 	private String stuemail;//邮箱
 	private String stuIDnumber;//身份证号码
-	private String userpwd;//密码
 	private String stucollege;//学院
 	private String studepartment;//专业
 	private String stunationality;//民族
@@ -40,13 +38,6 @@ public class Student extends BaseModel implements Serializable  {
 	//ManyToMany---Teacher
 	private List<Teacher> teacherList;
 
-	public String getUserno() {
-		return userno;
-	}
-	public void setUserno(String userno) {
-		this.userno = userno;
-	}
-
 	public String getStuemail() {
 		return stuemail;
 	}
@@ -59,13 +50,6 @@ public class Student extends BaseModel implements Serializable  {
 	}
 	public void setStuIDnumber(String stuIDnumber) {
 		this.stuIDnumber = stuIDnumber;
-	}
-	
-	public String getUserpwd() {
-		return userpwd;
-	}
-	public void setUserpwd(String userpwd) {
-		this.userpwd = userpwd;
 	}
 	
 	public String getStucollege() {
