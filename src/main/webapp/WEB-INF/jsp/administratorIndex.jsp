@@ -8,13 +8,15 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 
 <link rel="stylesheet" type="text/css" href="resources/bootstrap-3.3.7-dist/css/bootstrap.min.css">
-<link rel="stylesheet" type="text/css" href="resources/css/bootstrap-datetimepicker.min.css">
+<link rel="stylesheet" type="text/css" href="resources/bootstrap-3.3.7-dist/css/bootstrap-theme.min.css">
+<link rel="stylesheet" type="text/css" href="resources/bootstrap-datetimepicker/css/bootstrap-datetimepicker.min.css">
+<link rel="stylesheet" type="text/css" href="resources/dist/css/common.css">
 
 <script type="text/javascript" src="resources/js/jquery-3.1.1.min.js"></script>
 <script type="text/javascript" src="resources/bootstrap-3.3.7-dist/js/bootstrap.min.js"></script>
-<script type="text/javascript" src="resources/js/bootstrap-datetimepicker.js"></script>
-<script type="text/javascript" src="resources/js/bootstrap-datetimepicker.zh-CN.js"></script>
-<script type="text/javascript" src="resources/dist/js/administrator.js"></script>
+<script type="text/javascript" src="resources/bootstrap-datetimepicker/js/bootstrap-datetimepicker.min.js"></script>
+<script type="text/javascript" src="resources/bootstrap-datetimepicker/js/bootstrap-datetimepicker.zh-CN.js"></script>
+
 <script type="text/javascript" src="resources/dist/js/common.js"></script>
     <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -25,7 +27,7 @@
 
 <title>管理员</title>
 </head>
-<body>
+<body id="mainBody">
 	<nav class="navbar navbar-default" role="navigation">
 	  <div class="container-fluid">
 	    <!-- Brand and toggle get grouped for better mobile display -->
@@ -36,7 +38,7 @@
 	        <span class="icon-bar"></span>
 	        <span class="icon-bar"></span>
 	      </button>
-	      <a class="showLoginlog navbar-brand" href="#">管理员</a>
+	      <a id="showAnnouncementPage" class="navbar-brand" href="#">公告</a>
 	    </div>
 	
 	    <!-- Collect the nav links, forms, and other content for toggling -->
@@ -77,7 +79,7 @@
 	        <li class="dropdown">
 	          <a href="#" class="dropdown-toggle" data-toggle="dropdown">${loginUser.name} <span class="caret"></span></a>
 	          <ul class="dropdown-menu" role="menu">
-	            <li><a id="revisePwdLink" href="javascript:void(0)">更改密码</a></li>
+	            <li><a id="showRevisePwdPage" href="javascript:void(0)">更改密码</a></li>
 	            <li class="divider"></li>
 	            <li><a href="loginOut">退出</a></li>
 	          </ul>
@@ -86,8 +88,7 @@
 	    </div><!-- /.navbar-collapse -->
 	  </div><!-- /.container-fluid -->
 	</nav>
-	
-	<div class="showContent" style="margin-top:-10px">
+	<div class="showContent">
 	</div>
 </body>
 </html>

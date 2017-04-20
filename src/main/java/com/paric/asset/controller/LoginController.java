@@ -56,39 +56,28 @@ public class LoginController {
 		return "redirect:login.jsp";
 	}
 
-	//跳转到修改密码页面
-	@RequestMapping(params = "dispatch=revisePwdPage")
-	public String showRevisePwdPage(HttpServletRequest request, HttpServletResponse response){
-		return "revisePwdPage";
-	}
-	
 	//验证旧密码
-		@SuppressWarnings({ "rawtypes", "unchecked" })
-		@RequestMapping(params = "dispatch=oldPwdBlur")
-		@ResponseBody
-		public Map<String, Object> oldPwdBlur(HttpServletRequest request, HttpServletResponse response) throws Exception{
-			request.setCharacterEncoding("utf-8");
-			BaseCharacter loginUser = (BaseCharacter) request.getSession().getAttribute("loginUser");
-			String identity = (String) request.getSession().getAttribute("identity");
-			String oldPwd = request.getParameter("oldPwd");
-			Map<String, Object> map = new HashMap<String, Object>();
-			map.put("success", true);
-			if(loginUser!=null && oldPwd!=""){
-				Class clazz = Class.forName("com.paric.asset.model."+identity);
-				BaseCharacter isLogin = (BaseCharacter) baseCharacterService.login(clazz, loginUser.getUserno(), oldPwd);
-				if(isLogin!=null){
-					System.out.println("旧密码输入正确...");
-					map.put("result", 1);
-					return map;
-				}
-				System.out.println("旧密码输入错误...");
-				map.put("result", 0);
-				return map;
+	@SuppressWarnings({ "rawtypes", "unchecked" })
+	@RequestMapping(params = "dispatch=oldPwdBlur")
+	@ResponseBody
+	public Boolean oldPwdBlur(HttpServletRequest request, HttpServletResponse response) throws Exception{
+		request.setCharacterEncoding("utf-8");
+		BaseCharacter loginUser = (BaseCharacter) request.getSession().getAttribute("loginUser");
+		String identity = (String) request.getSession().getAttribute("identity");
+		String oldPwd = request.getParameter("oldPwd");
+		if(loginUser!=null && oldPwd!=""){
+			Class clazz = Class.forName("com.paric.asset.model."+identity);
+			BaseCharacter isLogin = (BaseCharacter) baseCharacterService.login(clazz, loginUser.getUserno(), oldPwd);
+			if(isLogin!=null){
+				System.out.println("旧密码输入正确...");
+				return true;
 			}
-			System.out.println("操作异常，用户未登录...");
-			map.put("result", 0);
-			return map;
+			System.out.println("旧密码输入错误...");
+			return false;
 		}
+		System.out.println("操作异常，用户未登录...");
+		return false;
+	}
 	
 	//修改密码
 	@SuppressWarnings({ "unchecked", "rawtypes" })

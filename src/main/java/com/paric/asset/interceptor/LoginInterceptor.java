@@ -6,17 +6,21 @@ import javax.servlet.http.HttpServletResponse;
 import org.springframework.web.servlet.HandlerInterceptor;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.paric.asset.model.BaseCharacter;
+
 public class LoginInterceptor implements HandlerInterceptor {
 	
 	@Override
 	public boolean preHandle(HttpServletRequest request, HttpServletResponse response,
 			Object arg2) throws Exception {
-		String userno =  (String)request.getSession().getAttribute("userno"); 
-        if(userno == null){  
-            response.sendRedirect(request.getContextPath()+"/login.jsp");
-            return false;  
+		BaseCharacter loginUser = (BaseCharacter) request.getSession().getAttribute("loginUser"); 
+		String queryParam = request.getQueryString();
+        if(queryParam.equals("dispatch=login") || loginUser!=null){
+            return true;
+        } else {
+        	response.sendRedirect(request.getContextPath()+"/login.jsp");
+        	return false;
         }
-        return true;
 	}
 	
 	@Override

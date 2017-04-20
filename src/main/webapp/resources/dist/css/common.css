@@ -1,0 +1,16 @@
+#mainBody {
+	margin: 0 auto;
+}
+
+.showContent {
+	width: 80%;
+	height: 850px;
+	margin: 0 auto;
+	margin-top:-20px;
+	padding-top:20px;
+	background-color: #f8f8f8;
+/* 	background: url("../images/announcementImages.jpg") no-repeat center center; */
+/* 	background-size:cover; */
+/* 	-moz-background-size:cover; */
+/* 	-webkit-background-size:cover; */
+}

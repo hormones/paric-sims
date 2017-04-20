@@ -1,6 +1,13 @@
 $(document).ready(function() {
-	$("#revisePwdLink").click(function() {
-		$(".showContent").load("login.do?dispatch=revisePwdPage");
+	
+	//菜单：点击修改密码
+	$("#showRevisePwdPage").click(function() {
+		$(".showContent").load("menu.do?dispatch=revisePwdPage");
+	});
+	
+	//菜单：点击公告
+	$("#showAnnouncementPage").click(function() {
+		$(".showContent").load("menu.do?dispatch=announcementPage");
 	});
 	
 	//检索学生信息

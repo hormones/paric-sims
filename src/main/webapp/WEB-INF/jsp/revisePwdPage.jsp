@@ -1,79 +1,100 @@
 <%@ page language="java" contentType="text/html; charset=utf-8"
 	pageEncoding="utf-8"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
-<html lang="zh-CN">
-<head>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-<meta http-equiv="X-UA-Compatible" content="IE=edge">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>登陆</title>
+
+<script type="text/javascript" src="resources/jquery-validation-1.16.0/dist/jquery.validate.min.js"></script>
 
 <script type="text/javascript">
-//ajax验证旧密码
-var oldPwdOk = false;
-$("#oldPwd").blur(function(){
-	if($("#oldPwd").val()!=""){
-		$.post("login.do?dispatch=oldPwdBlur",{oldPwd:$("#oldPwd").val()},function(data){
-			if(data.success){
-				if(data.result==1){
-					oldPwdOk = true;
-					$("#forIcon_A").removeClass();
-					$("#forIcon_A").addClass("glyphicon glyphicon-ok form-control-feedback");
-					$("#forIcon_A").css("color","green");
-				} else {
-					oldPwdOk = false;
-					$("#forIcon_A").removeClass();
-					$("#forIcon_A").addClass("glyphicon glyphicon-remove form-control-feedback");
-					$("#forIcon_A").css("color","red");
+$(document).ready(function(){
+	$("#reviseBtn").click(function(){
+		if(formValidation.form()){
+			$.post("login.do?dispatch=modifyPwd",$("#modifyPwdForm").serialize(),function(data){
+				if(data.success){
+					if(data.result==1){
+						$('#modifyPwdForm')[0].reset();
+						alert("密码修改成功！");
+					} else {
+						$('#modifyPwdForm')[0].reset();
+						alert("密码修改失败！");
+					}
 				}
-			}
-		},"json");
-	} else {
-		$("#forIcon_A").removeClass();
-	}
-});
-
-//确认密码输入是否一致
-$("#comfirmPwd").blur(function(){
-	if($("#comfirmPwd").val()!=""){
-		if($("#comfirmPwd").val() == $("#newPwd").val()){
-			$("#forIcon_B").removeClass();
-			$("#forIcon_B").addClass("glyphicon glyphicon-ok form-control-feedback");
-			$("#forIcon_B").css("color","green");
-		} else {
-			$("#forIcon_B").removeClass();
-			$("#forIcon_B").addClass("glyphicon glyphicon-remove form-control-feedback");
-			$("#forIcon_B").css("color","red");
+			},"json");
 		}
-	} else {
-		$("#forIcon_B").removeClass();
-	}
-});
+	});
+	
+	var formValidation = $( "#modifyPwdForm" ).validate({
+		rules: {
+			oldPwd: {
+				required: true,
+				rangelength:[6,20],
+				remote: {
+				    url: "login.do?dispatch=oldPwdBlur",
+				    type: "post",
+				    dataType: "json",
+				},
+			},
+			newPwd: {
+				required: true,
+				rangelength:[6,20],
+			},
+			confirmPwd: {
+				required: true,
+				rangelength:[6,20],
+				equalTo: "#newPwd"
+			},
+		},
+		messages: {
+			oldPwd: {
+				required: "请输入旧密码",
+				rangelength: "密码长度在6-20之间",
+				remote:"密码输入错误，请重新输入",
+			},
+			newPwd: {
+				required: "请输入新密码",
+				rangelength: "密码长度在6-20之间",
+			},
+			confirmPwd: {
+				required: "请确认密码",
+				rangelength: "密码长度在6-20之间",
+				equalTo: "两次输入不一致,请重新输入",
+			},
+		},
+		//errorElement: "em",
+		errorPlacement: function ( error, element ) {
+			error.addClass( "help-block" );
 
-//修改密码
-$("#reviseBtn").click(function(){
-	if(oldPwdOk && $("#oldPwd").val()!="" && $("#newPwd").val()!="" && $("#comfirmPwd").val() == $("#newPwd").val()){
-		$.post("login.do?dispatch=modifyPwd",$("#modifyPwdForm").serialize(),function(data){
-			if(data.success){
-				if(data.result==1){
-					alert("密码修改成功！");
-				} else {
-					alert("密码修改失败！");
-				}
+			element.parents( ".col-sm-2" ).addClass( "has-feedback" );
+			
+			error.insertAfter( element );
+
+			if ( !element.next( "span" )[ 0 ] ) {
+				$( "<span class='glyphicon glyphicon-remove form-control-feedback'></span>" ).insertAfter( element );
 			}
-		},"json");
-	}
+		},
+		success: function ( label, element ) {
+			if ( !$( element ).next( "span" )[ 0 ] ) {
+				$( "<span class='glyphicon glyphicon-ok form-control-feedback'></span>" ).insertAfter( $( element ) );
+			}
+		},
+		highlight: function ( element, errorClass, validClass ) {
+			$( element ).parents( ".col-sm-2" ).addClass( "has-error" ).removeClass( "has-success" );
+			$( element ).next( "span" ).addClass( "glyphicon-remove" ).removeClass( "glyphicon-ok" );
+		},
+		unhighlight: function ( element, errorClass, validClass ) {
+			$( element ).parents( ".col-sm-2" ).addClass( "has-success" ).removeClass( "has-error" );
+			$( element ).next( "span" ).addClass( "glyphicon-ok" ).removeClass( "glyphicon-remove" );
+		}
+	});
+
 });
 </script>
 
-</head>
-<body>
+<div>
 	<form id="modifyPwdForm" class="form-horizontal" role="form">
-		<div class="form-group has-feedback">
+		<div class="form-group">
 			<label for="oldPwd" class="col-sm-2 col-md-offset-2 control-label">请输入旧密码：</label>
 			<div class="col-sm-2">
 				<input type="password" class="form-control" id="oldPwd" name="oldPwd" placeholder="请输入旧密码"/>
-				<span id="forIcon_A"></span>
 			</div>
 		</div>
 		<div class="form-group">
@@ -82,18 +103,16 @@ $("#reviseBtn").click(function(){
 				<input type="password" class="form-control" id="newPwd" name="newPwd" placeholder="请输入新密码">
 			</div>
 		</div>
-		<div class="form-group has-feedback">
-			<label for="comfirmPwd" class="col-sm-2 col-md-offset-2 control-label">请确认新密码：</label>
+		<div class="form-group">
+			<label for="confirmPwd" class="col-sm-2 col-md-offset-2 control-label">请确认新密码：</label>
 			<div class="col-sm-2">
-				<input type="password" class="form-control" id="comfirmPwd" name="comfirmPwd" placeholder="请确认新密码">
-				<span id="forIcon_B"></span>
+				<input type="password" class="form-control" id="confirmPwd" name="confirmPwd" placeholder="请确认新密码">
 			</div>
 		</div>
 		<div class="form-group">
 			<div class="col-sm-offset-4 col-sm-8">
-				<button id="reviseBtn" type="button" class="btn btn-default">修改</button>
+				<button id="reviseBtn" type="button" class="btn btn-primary">修改</button>
 			</div>
 		</div>
 	</form>
-</body>
-</html>
+</div>

@@ -11,7 +11,7 @@
 
 <script type="text/javascript" src="resources/js/jquery-3.1.1.min.js"></script>
 <script type="text/javascript" src="resources/bootstrap-3.3.7-dist/js/bootstrap.min.js"></script>
-<script type="text/javascript" src="resources/dist/js/teacher.js"></script>
+
 <script type="text/javascript" src="resources/dist/js/common.js"></script>
     <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->

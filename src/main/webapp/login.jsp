@@ -26,7 +26,7 @@
 		<form class="form-horizontal" role="form" action="login.do?dispatch=login" method="post" >
 			<div class="form-group">
 				<div class="col-sm-8 col-sm-offset-2">
-					<h1 align="center">学生信息管理系统</h1>
+					<h1 align="center">登录</h1>
 				</div>
 			</div>
 			<div class="form-group">
