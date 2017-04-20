@@ -6,15 +6,15 @@ import org.hibernate.Query;
 import org.springframework.stereotype.Repository;
 
 import com.paric.asset.dao.LoginDao;
-import com.paric.asset.model.BaseCharacter;
+import com.paric.asset.model.BaseModel;
 import com.paric.asset.model.Student;
 
 @Repository("loginDao")
-public class LoginDaoImpl extends BaseDaoImpl<BaseCharacter> implements LoginDao {
+public class LoginDaoImpl extends BaseDaoImpl<BaseModel> implements LoginDao {
 
 	@SuppressWarnings("unchecked")
 	@Override
-	public <T extends BaseCharacter> T login(String userno, String userpwd, Class<T> clazz) {
+	public <T> T login(String userno, String userpwd, Class<T> clazz) {
 		String hql = "FROM "+clazz.getSimpleName()+" WHERE userno='"+userno+"' AND userpwd='"+userpwd+"'";
 		logger.debug(hql);
 		Query query = this.sessionFactory.getCurrentSession().createQuery(hql);

@@ -6,4 +6,6 @@ public interface BaseCharacterDao<T> extends BaseDao<T> {
 	
 	public T login(Class<T> clazz, String userno, String userpwd);
 	
+	public boolean modifyPwd(Class<T> clazz, String newPwd);
+	
 }

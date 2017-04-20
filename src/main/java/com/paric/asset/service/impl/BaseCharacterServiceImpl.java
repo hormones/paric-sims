@@ -26,4 +26,9 @@ public class BaseCharacterServiceImpl<T> extends BaseServiceImpl<T> implements B
 		return baseCharacterDao.login(clazz, userno, userpwd);
 	}
 
+	@Override
+	public boolean modifyPwd(Class<T> clazz, String newPwd) {
+		return baseCharacterDao.modifyPwd(clazz, newPwd);
+	}
+
 }

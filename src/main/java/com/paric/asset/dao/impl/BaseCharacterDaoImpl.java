@@ -30,6 +30,18 @@ public class BaseCharacterDaoImpl<T> extends BaseDaoImpl<T> implements BaseChara
 			return (T) query.list().get(0);
 		}
 		return null;
+	}
+
+	@Override
+	public boolean modifyPwd(Class<T> clazz, String newPwd) {
+		String hql = "UPDATE "+clazz.getSimpleName()+" SET userpwd='"+newPwd+"'";
+		logger.debug(hql);
+		Query query = this.sessionFactory.getCurrentSession().createQuery(hql);
+		int i = query.executeUpdate();
+		if(i==1){
+			return true;
+		}
+		return false;
 	};
 	
 }

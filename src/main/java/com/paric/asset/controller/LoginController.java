@@ -63,67 +63,64 @@ public class LoginController {
 	}
 	
 	//验证旧密码
-//		@RequestMapping(params = "dispatch=oldPasswordBlur")
-//		@ResponseBody
-//		public Map<String, Object> oldPasswordBlur(HttpServletRequest request, HttpServletResponse response) throws Exception{
-//			request.setCharacterEncoding("utf-8");
-//			String user = (String) request.getSession().getAttribute("user");
-//			String identity = (String) request.getSession().getAttribute("identity");
-//			String oldPassword = request.getParameter("oldPassword");
-//			Map<String, Object> map = new HashMap<String, Object>();
-//			if(oldPassword!=""){
-//				boolean isLogin = loginService.login(user, oldPassword, identity);
-//				if(isLogin){
-//					System.out.println("旧密码输入正确...");
-//					map.put("success", true);
-//					map.put("result", 1);
-//					return map;
-//				}
-//				System.out.println("旧密码输入错误...");
-//				map.put("success", true);
-//				map.put("result", 0);
-//				return map;
-//			}
-//			System.out.println("旧密码未输入...");
-//			map.put("success", true);
-//			map.put("result", 0);
-//			return map;
-//		}
+		@SuppressWarnings({ "rawtypes", "unchecked" })
+		@RequestMapping(params = "dispatch=oldPwdBlur")
+		@ResponseBody
+		public Map<String, Object> oldPwdBlur(HttpServletRequest request, HttpServletResponse response) throws Exception{
+			request.setCharacterEncoding("utf-8");
+			BaseCharacter loginUser = (BaseCharacter) request.getSession().getAttribute("loginUser");
+			String identity = (String) request.getSession().getAttribute("identity");
+			String oldPwd = request.getParameter("oldPwd");
+			Map<String, Object> map = new HashMap<String, Object>();
+			map.put("success", true);
+			if(loginUser!=null && oldPwd!=""){
+				Class clazz = Class.forName("com.paric.asset.model."+identity);
+				BaseCharacter isLogin = (BaseCharacter) baseCharacterService.login(clazz, loginUser.getUserno(), oldPwd);
+				if(isLogin!=null){
+					System.out.println("旧密码输入正确...");
+					map.put("result", 1);
+					return map;
+				}
+				System.out.println("旧密码输入错误...");
+				map.put("result", 0);
+				return map;
+			}
+			System.out.println("操作异常，用户未登录...");
+			map.put("result", 0);
+			return map;
+		}
 	
 	//修改密码
-//	@RequestMapping(params = "dispatch=pwdRevision")
-//	@ResponseBody
-//	public Map<String, Object> pwdRevision(HttpServletRequest request, HttpServletResponse response) throws Exception{
-//		request.setCharacterEncoding("utf-8");
-//		String user = (String) request.getSession().getAttribute("user");
-//		String identity = (String) request.getSession().getAttribute("identity");
-//		String oldPassword = request.getParameter("oldPassword");
-//		String newPassword = request.getParameter("newPassword");
-//		Map<String, Object> map = new HashMap<String, Object>();
-//		if(oldPassword!=""&&newPassword!=""){
-//			boolean isLogin = loginService.login(user, oldPassword, identity);
-//			if(isLogin){
-//				boolean isRevision = loginService.pwdRevision(user, newPassword, identity);
-//				if(isRevision){
-//					map.put("success", true);
-//					map.put("result", 1);
-//					return map;
-//				} else {
-//					System.out.println("密码修改失败...");
-//					map.put("success", true);
-//					map.put("result", 0);
-//					return map;
-//				}
-//			}
-//			System.out.println("旧密码输入错误...");
-//			map.put("success", true);
-//			map.put("result", 0);
-//			return map;
-//		}
-//		map.put("success", true);
-//		map.put("result", 0);
-//		return map;
-//	}
+	@SuppressWarnings({ "unchecked", "rawtypes" })
+	@RequestMapping(params = "dispatch=modifyPwd")
+	@ResponseBody
+	public Map<String, Object> modifyPwd(HttpServletRequest request, HttpServletResponse response) throws Exception{
+		request.setCharacterEncoding("utf-8");
+		BaseCharacter loginUser = (BaseCharacter) request.getSession().getAttribute("loginUser");
+		String identity = (String) request.getSession().getAttribute("identity");
+		String oldPwd = request.getParameter("oldPwd");
+		String newPwd = request.getParameter("newPwd");
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("success", true);
+		if(loginUser!=null && oldPwd!="" && newPwd!=""){
+			Class clazz = Class.forName("com.paric.asset.model."+identity);
+			BaseCharacter isLogin = (BaseCharacter) baseCharacterService.login(clazz, loginUser.getUserno(), oldPwd);
+			if(isLogin!=null){
+				boolean modifyPwdResult = baseCharacterService.modifyPwd(clazz, newPwd);
+				if(modifyPwdResult){
+					System.out.println("密码修改成功...");
+					map.put("result", 1);
+					return map;
+				}
+				System.out.println("密码修改失败...");
+				map.put("result", 0);
+				return map;
+			}
+			System.out.println("操作异常，用户未登录...");
+		}
+		map.put("result", 0);
+		return map;
+	}
 	
 	//用户注销
 	@RequestMapping(params = "dispatch=loginOut")
