@@ -20,8 +20,8 @@ import com.paric.asset.service.LoginService;
 
 
 @Controller
-@RequestMapping("/login.do")
-public class LoginController {
+@RequestMapping("/character.do")
+public class CharacterController {
 	
 	@Autowired
 	private LoginService loginService;
@@ -45,11 +45,7 @@ public class LoginController {
 			session.setAttribute("loginUser", loginUser);
 			session.setAttribute("identity", identity);
 			System.out.println("登陆通过...");
-			//将identity首字母小写并拼接成页面的名字
-			char[] cs=identity.toCharArray();
-	        cs[0] += 32;
-	        String Character = String.valueOf(cs)+"Index";
-			return Character;
+			return "characterIndex";
 		} else{
 			System.out.println("登陆失败...");
 		}

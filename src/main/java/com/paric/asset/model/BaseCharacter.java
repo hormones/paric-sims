@@ -12,9 +12,9 @@ public class BaseCharacter extends BaseModel implements Serializable {
 	 */
 	private static final long serialVersionUID = 3668117774482823571L;
 	
-	private String userno;
+	private String userno; //账号(同时也是学生的学号)
 	
-	private String userpwd;
+	private String userpwd; //密码
 	
 	public String getUserno() {
 		return userno;

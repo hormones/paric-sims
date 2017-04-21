@@ -1,5 +1,5 @@
-<%@ page language="java" contentType="text/html; charset=utf-8"
-    pageEncoding="utf-8"%>
+<%@ page language="java" contentType="text/html; charset=utf-8" pageEncoding="utf-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html lang="zh-CN">
 <head>
@@ -44,44 +44,65 @@
 	    <!-- Collect the nav links, forms, and other content for toggling -->
 	    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
 	      <ul class="nav navbar-nav">
-	        <li class="dropdown">
-	          <a href="#" class="dropdown-toggle" data-toggle="dropdown">教师 <span class="caret"></span></a>
-	          <ul class="dropdown-menu" role="menu">
-	          	<li><a href="#">查看全部</a></li>
-	            <li class="divider"></li>
-	            <li><a href="#">电气与信息工程学院</a></li>
-	            <li class="divider"></li>
-	            <li><a href="#">土木建筑学院</a></li>
-	            <li class="divider"></li>
-	            <li><a href="#">计算机科学与工程学院</a></li>
-			  </ul>
-	        </li>
-	        <li class="dropdown">
-	          <a href="#" class="dropdown-toggle" data-toggle="dropdown">学生 <span class="caret"></span></a>
-	          <ul class="dropdown-menu" role="menu">
-	          	<li><a href="#">查看全部</a></li>
-	            <li class="divider"></li>
-	            <li><a href="#">电气与信息工程学院</a></li>
-	            <li class="divider"></li>
-	            <li><a href="#">土木建筑学院</a></li>
-	            <li class="divider"></li>
-	            <li><a href="#">计算机科学与工程学院</a></li>
-	          </ul>
-	        </li>
+	      	<c:if test="${identity == 'Administrator'}">
+		        <li class="dropdown">
+		          <a href="#" class="dropdown-toggle" data-toggle="dropdown">教师 <span class="caret"></span></a>
+		          <ul class="dropdown-menu" role="menu">
+		          	<li><a href="#">查看全部</a></li>
+		            <li class="divider"></li>
+		            <li><a href="#">电气与信息工程学院</a></li>
+		            <li class="divider"></li>
+		            <li><a href="#">土木建筑学院</a></li>
+		            <li class="divider"></li>
+		            <li><a href="#">计算机科学与工程学院</a></li>
+				  </ul>
+		        </li>
+		        <li class="dropdown">
+		          <a href="#" class="dropdown-toggle" data-toggle="dropdown">学生 <span class="caret"></span></a>
+		          <ul class="dropdown-menu" role="menu">
+		          	<li><a id="viewAllStudent" href="#">查看全部</a></li>
+		            <li class="divider"></li>
+		            <li><a href="#">电气与信息工程学院</a></li>
+		            <li class="divider"></li>
+		            <li><a href="#">土木建筑学院</a></li>
+		            <li class="divider"></li>
+		            <li><a href="#">计算机科学与工程学院</a></li>
+		          </ul>
+		        </li>
+	        </c:if>
+	        <c:if test="${identity == 'Teacher'}">
+	        	<li><a href="#">个人信息</a></li>
+	        	<li class="dropdown">
+		          <a href="#" class="dropdown-toggle" data-toggle="dropdown">学生信息 <span class="caret"></span></a>
+		          <ul class="dropdown-menu" role="menu">
+		          	<li><a href="#">查看全部</a></li>
+		            <li class="divider"></li>
+		            <li><a href="#">一班</a></li>
+		            <li class="divider"></li>
+		            <li><a href="#">二班</a></li>
+		            <li class="divider"></li>
+		            <li><a href="#">三班</a></li>
+		          </ul>
+		        </li>
+		        <li><a href="#">课程信息管理</a></li>	 
+		        <li><a href="#">成绩信息管理</a></li>
+	        </c:if>
 	      </ul>
-	      <form class="navbar-form navbar-left" role="search">
-	        <div class="form-group">
-	          <input id="stuSearch" class="form-control" name="stuSearch" type="text" placeholder="请输入学生学号或姓名">
-	        </div>
-	        <button type="button" id="stuSearchBtn" class="btn btn-default">搜索</button>
-	      </form>
+	      <c:if test="${(identity == 'Administrator') or (identity == 'Teacher')}">
+		      <form class="navbar-form navbar-left" role="search">
+		        <div class="form-group">
+		          <input id="stuSearch" class="form-control" name="stuSearch" type="text" placeholder="请输入学生学号或姓名">
+		        </div>
+		        <button type="button" id="stuSearchBtn" class="btn btn-default">搜索</button>
+		      </form>
+	      </c:if>
 	      <ul class="nav navbar-nav navbar-right">
 	        <li class="dropdown">
 	          <a href="#" class="dropdown-toggle" data-toggle="dropdown">${loginUser.name} <span class="caret"></span></a>
 	          <ul class="dropdown-menu" role="menu">
 	            <li><a id="showRevisePwdPage" href="javascript:void(0)">更改密码</a></li>
 	            <li class="divider"></li>
-	            <li><a href="loginOut">退出</a></li>
+	            <li><a href="character.do?dispatch=loginOut">退出</a></li>
 	          </ul>
 	        </li>
 	      </ul>

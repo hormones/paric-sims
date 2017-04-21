@@ -23,7 +23,7 @@
 </head>
 <body>
 	<div class="container">
-		<form class="form-horizontal" role="form" action="login.do?dispatch=login" method="post" >
+		<form class="form-horizontal" role="form" action="character.do?dispatch=login" method="post" >
 			<div class="form-group">
 				<div class="col-sm-8 col-sm-offset-2">
 					<h1 align="center">登录</h1>

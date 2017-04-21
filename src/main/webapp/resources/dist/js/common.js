@@ -2,20 +2,24 @@ $(document).ready(function() {
 	
 	//菜单：点击修改密码
 	$("#showRevisePwdPage").click(function() {
-		$(".showContent").load("menu.do?dispatch=revisePwdPage");
+		$(".showContent").load("content.do?dispatch=revisePwdPage");
 	});
 	
 	//菜单：点击公告
 	$("#showAnnouncementPage").click(function() {
-		$(".showContent").load("menu.do?dispatch=announcementPage");
+		$(".showContent").load("content.do?dispatch=announcementPage");
 	});
+	
+	$("#viewAllStudent").click(function(){
+		$(".showContent").load("content.do?dispatch=studentTablePage");
+	})
 	
 	//检索学生信息
 	$("#stuSearchBtn").click(function(){
-		$.post("login.do?dispatch=stuSearch",{"userno":$("#stuSearch").val()},function(data){
+		$.post("character.do?dispatch=stuSearch",{"userno":$("#stuSearch").val()},function(data){
 			if(data.success){
 				if(data.result[0]!=null){
-					$(".showContent").load("login.do?dispatch=viewStudentInfo",function(e){
+					$(".showContent").load("character.do?dispatch=viewStudentInfo",function(e){
 						$("#userno").val(data.result[0].userno);
 						$("#stuname").val(data.result[0].stuname);
 						$("#stunationality").val(data.result[0].stunationality);

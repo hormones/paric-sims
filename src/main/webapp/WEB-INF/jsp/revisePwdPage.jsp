@@ -8,7 +8,7 @@
 $(document).ready(function(){
 	$("#reviseBtn").click(function(){
 		if(formValidation.form()){
-			$.post("login.do?dispatch=modifyPwd",$("#modifyPwdForm").serialize(),function(data){
+			$.post("character.do?dispatch=modifyPwd",$("#modifyPwdForm").serialize(),function(data){
 				if(data.success){
 					if(data.result==1){
 						$('#modifyPwdForm')[0].reset();
@@ -28,7 +28,7 @@ $(document).ready(function(){
 				required: true,
 				rangelength:[6,20],
 				remote: {
-				    url: "login.do?dispatch=oldPwdBlur",
+				    url: "character.do?dispatch=oldPwdBlur",
 				    type: "post",
 				    dataType: "json",
 				},

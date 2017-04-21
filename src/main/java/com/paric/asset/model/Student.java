@@ -11,6 +11,7 @@ import javax.persistence.FetchType;
 import javax.persistence.JoinTable;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToMany;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 @Entity
@@ -23,17 +24,17 @@ public class Student extends BaseCharacter implements Serializable  {
 	
 	private String stuemail;//邮箱
 	private String stuIDnumber;//身份证号码
-	private String stucollege;//学院
-	private String studepartment;//专业
 	private String stunationality;//民族
 	private String stusex;//性别
 	private Date stubirth;//出生日期
 	private Date stuintime;//入学时间
-	private String stuclass;//班级
 	private String stupolitics;//政治面貌
 	private String stucomefrom;//生源地
 	private String stuhomeaddress;//家庭住址
 	private String stunote;//备注
+	
+	//ManyToOne---Klass
+	private Klass klass;
 	
 	//ManyToMany---Teacher
 	private List<Teacher> teacherList;
@@ -50,20 +51,6 @@ public class Student extends BaseCharacter implements Serializable  {
 	}
 	public void setStuIDnumber(String stuIDnumber) {
 		this.stuIDnumber = stuIDnumber;
-	}
-	
-	public String getStucollege() {
-		return stucollege;
-	}
-	public void setStucollege(String stucollege) {
-		this.stucollege = stucollege;
-	}
-	
-	public String getStudepartment() {
-		return studepartment;
-	}
-	public void setStudepartment(String studepartment) {
-		this.studepartment = studepartment;
 	}
 	
 	public String getStunationality() {
@@ -92,13 +79,6 @@ public class Student extends BaseCharacter implements Serializable  {
 	}
 	public void setStuintime(Date stuintime) {
 		this.stuintime = stuintime;
-	}
-	
-	public String getStuclass() {
-		return stuclass;
-	}
-	public void setStuclass(String stuclass) {
-		this.stuclass = stuclass;
 	}
 	
 	public String getStupolitics() {
@@ -136,6 +116,14 @@ public class Student extends BaseCharacter implements Serializable  {
 	}
 	public void setTeacherList(List<Teacher> teacherList) {
 		this.teacherList = teacherList;
+	}
+	
+	@ManyToOne(cascade=CascadeType.MERGE,fetch=FetchType.LAZY,targetEntity=Klass.class)
+	public Klass getKlass() {
+		return klass;
+	}
+	public void setKlass(Klass klass) {
+		this.klass = klass;
 	}
 	
 }

@@ -19,6 +19,9 @@ public class Teacher extends BaseCharacter implements Serializable  {
 	 */
 	private static final long serialVersionUID = -7321616712237387305L;
 	
+	//ManyToMany---Klass
+	private List<Klass> klassList;
+	
 	//ManyToMany---Student
 	private List<Student> studentList;
 	
@@ -29,6 +32,15 @@ public class Teacher extends BaseCharacter implements Serializable  {
 	}
 	public void setStudentList(List<Student> studentList) {
 		this.studentList = studentList;
+	}
+	
+	@ManyToMany(cascade=CascadeType.MERGE,fetch=FetchType.LAZY,targetEntity=Student.class)
+	@JoinTable(name="teacher_klass",joinColumns={@JoinColumn(name="k_id")},inverseJoinColumns={@JoinColumn(name="t_id")})
+	public List<Klass> getKlassList() {
+		return klassList;
+	}
+	public void setKlassList(List<Klass> klassList) {
+		this.klassList = klassList;
 	}
 	
 }

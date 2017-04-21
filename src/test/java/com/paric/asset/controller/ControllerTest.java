@@ -34,7 +34,7 @@ public class ControllerTest {
     
     @Test  
     public void testLogin() throws Exception {  
-        mockMvc.perform((post("/login.do?dispatch=login")
+        mockMvc.perform((post("/character.do?dispatch=login")
         		.param("identity", "Administrator").param("userno", "admin").param("userpwd", "123456")))
         		//.andExpect(status().isOk()) 
                 .andDo(print());
