@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=utf-8" pageEncoding="utf-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html lang="zh-CN">
 <head>
@@ -10,13 +11,13 @@
 <link rel="stylesheet" type="text/css" href="resources/bootstrap-3.3.7-dist/css/bootstrap.min.css">
 <link rel="stylesheet" type="text/css" href="resources/bootstrap-3.3.7-dist/css/bootstrap-theme.min.css">
 <link rel="stylesheet" type="text/css" href="resources/bootstrap-datetimepicker/css/bootstrap-datetimepicker.min.css">
-<link rel="stylesheet" type="text/css" href="resources/dist/css/common.css">
 
 <script type="text/javascript" src="resources/js/jquery-3.1.1.min.js"></script>
 <script type="text/javascript" src="resources/bootstrap-3.3.7-dist/js/bootstrap.min.js"></script>
 <script type="text/javascript" src="resources/bootstrap-datetimepicker/js/bootstrap-datetimepicker.min.js"></script>
 <script type="text/javascript" src="resources/bootstrap-datetimepicker/js/bootstrap-datetimepicker.zh-CN.js"></script>
 
+<link rel="stylesheet" type="text/css" href="resources/dist/css/common.css">
 <script type="text/javascript" src="resources/dist/js/common.js"></script>
     <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -58,13 +59,71 @@
 				  </ul>
 		        </li>
 		        <li class="dropdown">
-		          <a href="#" class="dropdown-toggle" data-toggle="dropdown">学生 <span class="caret"></span></a>
+		          <a href="#" class="dropdown-toggle" data-toggle="dropdown">学生信息 <span class="caret"></span></a>
 		          <ul class="dropdown-menu" role="menu">
-		          	<li><a id="viewAllStudent" href="#">查看全部</a></li>
+		          	<li><a class="viewStudentTable" href="#">查看全部</a></li>
 		            <li class="divider"></li>
-		            <li><a href="#">电气与信息工程学院</a></li>
+		            <li class="dropdown-submenu college">
+		            	<a tabindex="-1" href="javascript:;">电气与信息工程学院</a>  
+	                    <ul class="dropdown-menu">  
+	                        <li class="dropdown-submenu department">  
+	                            <a href="javascript:;">电子信息工程</a>  
+	                            <ul class="dropdown-menu"> 
+	                            	<li><a class="klass" href="javascript:;">全部</a></li>
+	                            	<li class="divider"></li>  
+	                                <li><a class="klass" href="javascript:;">一班</a></li>
+	                                <li class="divider"></li> 
+	                                <li><a class="klass" href="javascript:;">二班</a></li>
+	                                <li class="divider"></li> 
+	                                <li><a class="klass" href="javascript:;">三班</a></li>  
+	                            </ul>  
+	                        </li>
+	                        <li class="divider"></li>  
+	                        <li class="dropdown-submenu department">  
+	                            <a href="javascript:;">电气工程及其自动化</a>  
+	                            <ul class="dropdown-menu">  
+	                            	<li><a class="klass" href="javascript:;">全部</a></li>
+	                            	<li class="divider"></li>  
+	                                <li><a class="klass" href="javascript:;">一班</a></li>
+	                                <li class="divider"></li> 
+	                                <li><a class="klass" href="javascript:;">二班</a></li>
+	                                <li class="divider"></li> 
+	                                <li><a class="klass" href="javascript:;">三班</a></li>  
+	                            </ul>  
+	                        </li>
+	                    </ul>
+		            </li>
 		            <li class="divider"></li>
-		            <li><a href="#">土木建筑学院</a></li>
+		            <li class="dropdown-submenu college">
+		            	<a tabindex="-1" href="javascript:;">建筑工程学院</a>  
+	                    <ul class="dropdown-menu">  
+	                        <li class="dropdown-submenu department">  
+	                            <a href="javascript:;">城市规划</a>  
+	                            <ul class="dropdown-menu">
+	                            	<li><a class="klass" href="javascript:;">全部</a></li>
+	                            	<li class="divider"></li>    
+	                                <li><a class="klass" href="javascript:;">一班</a></li>
+	                                <li class="divider"></li> 
+	                                <li><a class="klass" href="javascript:;">二班</a></li>
+	                                <li class="divider"></li> 
+	                                <li><a class="klass" href="javascript:;">三班</a></li>  
+	                            </ul>  
+	                        </li>
+	                        <li class="divider"></li>  
+	                        <li class="dropdown-submenu department">  
+	                            <a href="javascript:;">土木工程</a>  
+	                            <ul class="dropdown-menu">
+	                            	<li><a class="klass" href="javascript:;">全部</a></li>
+	                            	<li class="divider"></li>    
+	                                <li><a class="klass" href="javascript:;">一班</a></li>
+	                                <li class="divider"></li> 
+	                                <li><a class="klass" href="javascript:;">二班</a></li>
+	                                <li class="divider"></li> 
+	                                <li><a class="klass" href="javascript:;">三班</a></li>  
+	                            </ul>  
+	                        </li>
+	                    </ul>
+		            </li>
 		            <li class="divider"></li>
 		            <li><a href="#">计算机科学与工程学院</a></li>
 		          </ul>
@@ -75,13 +134,71 @@
 	        	<li class="dropdown">
 		          <a href="#" class="dropdown-toggle" data-toggle="dropdown">学生信息 <span class="caret"></span></a>
 		          <ul class="dropdown-menu" role="menu">
-		          	<li><a href="#">查看全部</a></li>
+		          	<li><a class="viewStudentTable" href="#">查看全部</a></li>
 		            <li class="divider"></li>
-		            <li><a href="#">一班</a></li>
+		            <li class="dropdown-submenu college">
+		            	<a tabindex="-1" href="javascript:;">电气与信息工程学院</a>  
+	                    <ul class="dropdown-menu">  
+	                        <li class="dropdown-submenu department">  
+	                            <a href="javascript:;">电子信息工程</a>  
+	                            <ul class="dropdown-menu"> 
+	                            	<li><a class="klass" href="javascript:;">全部</a></li>
+	                            	<li class="divider"></li>  
+	                                <li><a class="klass" href="javascript:;">一班</a></li>
+	                                <li class="divider"></li> 
+	                                <li><a class="klass" href="javascript:;">二班</a></li>
+	                                <li class="divider"></li> 
+	                                <li><a class="klass" href="javascript:;">三班</a></li>  
+	                            </ul>  
+	                        </li>
+	                        <li class="divider"></li>  
+	                        <li class="dropdown-submenu department">  
+	                            <a href="javascript:;">电气工程及其自动化</a>  
+	                            <ul class="dropdown-menu">  
+	                            	<li><a class="klass" href="javascript:;">全部</a></li>
+	                            	<li class="divider"></li>  
+	                                <li><a class="klass" href="javascript:;">一班</a></li>
+	                                <li class="divider"></li> 
+	                                <li><a class="klass" href="javascript:;">二班</a></li>
+	                                <li class="divider"></li> 
+	                                <li><a class="klass" href="javascript:;">三班</a></li>  
+	                            </ul>  
+	                        </li>
+	                    </ul>
+		            </li>
 		            <li class="divider"></li>
-		            <li><a href="#">二班</a></li>
+		            <li class="dropdown-submenu college">
+		            	<a tabindex="-1" href="javascript:;">建筑工程学院</a>  
+	                    <ul class="dropdown-menu">  
+	                        <li class="dropdown-submenu department">  
+	                            <a href="javascript:;">城市规划</a>  
+	                            <ul class="dropdown-menu">
+	                            	<li><a class="klass" href="javascript:;">全部</a></li>
+	                            	<li class="divider"></li>    
+	                                <li><a class="klass" href="javascript:;">一班</a></li>
+	                                <li class="divider"></li> 
+	                                <li><a class="klass" href="javascript:;">二班</a></li>
+	                                <li class="divider"></li> 
+	                                <li><a class="klass" href="javascript:;">三班</a></li>  
+	                            </ul>  
+	                        </li>
+	                        <li class="divider"></li>  
+	                        <li class="dropdown-submenu department">  
+	                            <a href="javascript:;">土木工程</a>  
+	                            <ul class="dropdown-menu">
+	                            	<li><a class="klass" href="javascript:;">全部</a></li>
+	                            	<li class="divider"></li>    
+	                                <li><a class="klass" href="javascript:;">一班</a></li>
+	                                <li class="divider"></li> 
+	                                <li><a class="klass" href="javascript:;">二班</a></li>
+	                                <li class="divider"></li> 
+	                                <li><a class="klass" href="javascript:;">三班</a></li>  
+	                            </ul>  
+	                        </li>
+	                    </ul>
+		            </li>
 		            <li class="divider"></li>
-		            <li><a href="#">三班</a></li>
+		            <li><a href="#">计算机科学与工程学院</a></li>
 		          </ul>
 		        </li>
 		        <li><a href="#">课程信息管理</a></li>	 
@@ -110,6 +227,8 @@
 	  </div><!-- /.container-fluid -->
 	</nav>
 	<div class="showContent">
+	</div>
+	<div class="showModal">
 	</div>
 </body>
 </html>

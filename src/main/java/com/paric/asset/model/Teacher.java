@@ -25,8 +25,10 @@ public class Teacher extends BaseCharacter implements Serializable  {
 	//ManyToMany---Student
 	private List<Student> studentList;
 	
-	@ManyToMany(cascade=CascadeType.MERGE,fetch=FetchType.LAZY,targetEntity=Student.class)
-	@JoinTable(name="teacher_student",joinColumns={@JoinColumn(name="s_id")},inverseJoinColumns={@JoinColumn(name="t_id")})
+	@ManyToMany(cascade = CascadeType.PERSIST, fetch = FetchType.LAZY)
+	@JoinTable(name = "Teacher_Student",
+	joinColumns = {@JoinColumn(name = "Teacher_ID", referencedColumnName = "id")},
+	inverseJoinColumns = {@JoinColumn(name = "Student_ID", referencedColumnName ="id")})
 	public List<Student> getStudentList() {
 		return studentList;
 	}
@@ -34,8 +36,10 @@ public class Teacher extends BaseCharacter implements Serializable  {
 		this.studentList = studentList;
 	}
 	
-	@ManyToMany(cascade=CascadeType.MERGE,fetch=FetchType.LAZY,targetEntity=Student.class)
-	@JoinTable(name="teacher_klass",joinColumns={@JoinColumn(name="k_id")},inverseJoinColumns={@JoinColumn(name="t_id")})
+	@ManyToMany(cascade = CascadeType.PERSIST, fetch = FetchType.LAZY)
+	@JoinTable(name = "Teacher_Klass",
+	joinColumns = {@JoinColumn(name = "Teacher_ID", referencedColumnName = "id")},
+	inverseJoinColumns = {@JoinColumn(name = "Klass_ID", referencedColumnName ="id")})
 	public List<Klass> getKlassList() {
 		return klassList;
 	}

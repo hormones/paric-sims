@@ -1,14 +1,10 @@
 package com.paric.asset.controller;
 
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
-
-import com.paric.asset.model.Klass;
 
 @Controller
 @RequestMapping("/content.do")
@@ -26,12 +22,26 @@ public class ContentController {
 		return "revisePwdPage";
 	}
 	
+	//跳转到学生表格页面
 	@RequestMapping(params = "dispatch=studentTablePage")
 	@ResponseBody
-	public ModelAndView studentTablePage(HttpServletRequest request, HttpServletResponse response){
+	public ModelAndView studentTablePage(@RequestParam String klass, String department, String college){
 		ModelAndView mv = new ModelAndView("studentTablePage");
-		Klass klass = new Klass();
 		mv.addObject("klass", klass);
+		mv.addObject("department", department);
+		mv.addObject("college", college);
 		return mv;
+	}
+	
+	//跳转到学生信息页面
+	@RequestMapping(params = "dispatch=studentInfoPage")
+	public String studentInfoPage(){
+		return "studentInfoPage";
+	}
+	
+	//跳转到新增学生模态框
+	@RequestMapping(params = "dispatch=toAddStudentModal")
+	public String toAddStudentModal(){
+		return "addStudentModal";
 	}
 }

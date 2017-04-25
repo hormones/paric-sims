@@ -1,5 +1,9 @@
 package com.paric.asset.other;
 
+import java.sql.Date;
+import java.util.ArrayList;
+import java.util.List;
+
 import javax.annotation.Resource;
 
 import org.apache.log4j.Logger;
@@ -13,6 +17,7 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.paric.asset.dao.BaseDao;
+import com.paric.asset.dao.StudentDao;
 import com.paric.asset.model.Administrator;
 import com.paric.asset.model.BaseCharacter;
 import com.paric.asset.model.Klass;
@@ -20,6 +25,10 @@ import com.paric.asset.model.Student;
 import com.paric.asset.model.Teacher;
 import com.paric.asset.service.BaseCharacterService;
 import com.paric.asset.service.LoginService;
+import com.paric.asset.service.StudentService;
+
+import net.sf.json.JSONArray;
+import net.sf.json.JSONObject;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(locations = {"classpath*:spring/spring.xml","classpath*:spring/spring-hibernate.xml"})
@@ -36,11 +45,17 @@ public class BaseTest {
 	private BaseDao baseDao;
 	
 	@Autowired
+	private StudentService studentService;
+	
+	@Autowired
 	private LoginService loginService;
 	
 	@SuppressWarnings("rawtypes")
 	@Autowired
 	private BaseCharacterService baseCharacterService;
+	
+	@Autowired
+	private StudentDao studentDao;
 	
 	@Test
 	@Rollback(false)
@@ -60,19 +75,6 @@ public class BaseTest {
 		baseDao.save(administrator);
 	}
 	
-	//插入一个班级
-	@SuppressWarnings("unchecked")
-	@Test
-	@Rollback(false)
-	public void test_klass(){
-		Klass klass = new Klass();
-		klass.setName("一班");
-		klass.setKlassCollege("计算机科学与工程");
-		klass.setKlassDepartment("计算机科学与技术");
-		klass.setKlassGrade("2016");
-		baseDao.save(klass);
-	}
-	
 	//插入一位教师
 	@SuppressWarnings("unchecked")
 	@Test
@@ -85,19 +87,49 @@ public class BaseTest {
 		baseDao.save(teacher);
 	}
 	
-	//插入一位学生
+	//插入一个班级
+		@SuppressWarnings("unchecked")
+		@Test
+		@Rollback(false)
+		public void test_klass(){
+			List<Teacher> teacherList = new ArrayList<Teacher>();
+			Teacher teacher = (Teacher) baseDao.findById(Teacher.class, 2);
+			teacherList.add(teacher);
+			Klass klass = new Klass();
+			klass.setName("一班");
+			klass.setKlassCollege("电气与信息工程学院");
+			klass.setKlassDepartment("电子信息工程");
+			klass.setKlassGrade("2016");
+			klass.setTeacherList(teacherList);
+			baseDao.save(klass);
+		}
+	
+	//插入二十位学生
 	@SuppressWarnings("unchecked")
 	@Test
 	@Rollback(false)
-	public void test_student(){
-		Student student = new Student();
-		student.setName("王小二");
-		student.setUserno("2017001");
-		student.setUserpwd("123456");
-		student.setStusex("男");
-		student.setStuemail("123456@abc.com");
-		student.setStuIDnumber("123456789987654321");
-		baseDao.save(student);
+	public void test_student20(){
+		Klass klass = (Klass) baseDao.findById(Klass.class, 3);
+		List<Teacher> teacherList = new ArrayList<Teacher>();
+		Teacher teacher = (Teacher) baseDao.findById(Teacher.class, 2);
+		teacherList.add(teacher);
+		for(int i=1;i<=20;i++){
+			Student student = new Student();
+			student.setName("王小二"+i);
+			student.setUserno("201600"+i);
+			student.setUserpwd("123456");
+			student.setStusex("男");
+			student.setStubirth(Date.valueOf("1995-11-11"));
+			student.setStucomefrom("江苏省无锡市");
+			student.setStuhomeaddress("江苏省无锡市");
+			student.setStunationality("汉族");
+			student.setStuemail("123456@abc.com");
+			student.setStuIDnumber("123456789987654321");
+			student.setKlass(klass);
+			student.setTeacherList(teacherList);
+			baseDao.save(student);
+		}
+		
 	}
 	
 	//角色登录
@@ -134,6 +166,14 @@ public class BaseTest {
 		if(character!=null){
 			logger.debug("结果是："+((Student)character).getStuemail());
 		}
+	}
+	
+	//查看以班级为单位的学生信息
+	@Test
+	@Rollback(true)
+	public void test_JSON(){
+		String data = studentService.loadStudentTable(null, "电气与信息工程学院", "电子信息工程", "一班", 1, 10);
+		System.out.println("结果: "+data);
 	}
 	
 }

@@ -6,7 +6,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.paric.asset.dao.BaseCharacterDao;
-import com.paric.asset.model.BaseCharacter;
 import com.paric.asset.service.BaseCharacterService;
 
 @Service("baseCharacterService")

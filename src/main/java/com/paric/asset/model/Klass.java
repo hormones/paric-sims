@@ -62,8 +62,10 @@ public class Klass extends BaseModel implements Serializable {
 		this.studentList = studentList;
 	}
 	
-	@ManyToMany(cascade=CascadeType.MERGE,fetch=FetchType.LAZY,targetEntity=Teacher.class)
-	@JoinTable(name="teacher_klass",joinColumns={@JoinColumn(name="k_id")},inverseJoinColumns={@JoinColumn(name="t_id")})
+	@ManyToMany(cascade = CascadeType.PERSIST, fetch = FetchType.LAZY)
+	@JoinTable(name = "Teacher_Klass",
+	joinColumns = {@JoinColumn(name = "Klass_ID", referencedColumnName = "id")},
+	inverseJoinColumns = {@JoinColumn(name = "Teacher_ID", referencedColumnName ="id")})
 	public List<Teacher> getTeacherList() {
 		return teacherList;
 	}
