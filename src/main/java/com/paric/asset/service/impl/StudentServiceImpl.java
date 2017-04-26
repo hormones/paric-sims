@@ -48,8 +48,8 @@ public class StudentServiceImpl extends BaseCharacterServiceImpl<Student> implem
 		jsonObject.put("name", student.getName());
 		jsonObject.put("stunationality", student.getStunationality());
 		jsonObject.put("stusex", student.getStusex());
-		jsonObject.put("college", student.getKlass().getKlassCollege());
-		jsonObject.put("department", student.getKlass().getKlassDepartment());
+		//jsonObject.put("college", student.getKlass().getKlassCollege());
+		//jsonObject.put("department", student.getKlass().getKlassDepartment());
 		jsonObject.put("stuemail", student.getStuemail());
 		jsonObject.put("klassName", student.getKlass().getName());
 		jsonObject.put("stubirth", String.valueOf(student.getStubirth()));

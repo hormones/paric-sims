@@ -9,6 +9,7 @@ import javax.persistence.FetchType;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
@@ -20,40 +21,33 @@ public class Klass extends BaseModel implements Serializable {
 	 * 
 	 */
 	private static final long serialVersionUID = 4665153658988311374L;
+	
+	private String grade; //年级
+	
+	//@ManyToOne
+	private Major major; //专业entity
+	
+	//@OneToMany
+	private List<Student> studentList; //学生entity
+	
+	/*//@ManyToMany
+	private List<Teacher> teacherList; //教师entity
+*/	
+	public String getGrade() {
+		return grade;
+	}
+	public void setGrade(String grade) {
+		this.grade = grade;
+	}
+	
+	@ManyToOne(cascade=CascadeType.MERGE,fetch=FetchType.LAZY,targetEntity=Major.class)
+	public Major getMajor() {
+		return major;
+	}
+	public void setMajor(Major major) {
+		this.major = major;
+	}
 
-	private String klassDepartment; 
-	
-	private String klassCollege;
-	
-	private String klassGrade;
-
-	//OneToMany---Student
-	private List<Student> studentList;
-	
-	//ManyToMany---Teacher
-	private List<Teacher> teacherList;
-	
-	public String getKlassDepartment() {
-		return klassDepartment;
-	}
-	public void setKlassDepartment(String klassDepartment) {
-		this.klassDepartment = klassDepartment;
-	}
-
-	public String getKlassCollege() {
-		return klassCollege;
-	}
-	public void setKlassCollege(String klassCollege) {
-		this.klassCollege = klassCollege;
-	}
-
-	public String getKlassGrade() {
-		return klassGrade;
-	}
-	public void setKlassGrade(String klassGrade) {
-		this.klassGrade = klassGrade;
-	}
-	
 	@OneToMany(cascade=CascadeType.MERGE,fetch=FetchType.LAZY,mappedBy="klass",targetEntity=Student.class)
 	public List<Student> getStudentList() {
 		return studentList;
@@ -62,7 +56,7 @@ public class Klass extends BaseModel implements Serializable {
 		this.studentList = studentList;
 	}
 	
-	@ManyToMany(cascade = CascadeType.PERSIST, fetch = FetchType.LAZY)
+	/*@ManyToMany(cascade = CascadeType.PERSIST, fetch = FetchType.LAZY)
 	@JoinTable(name = "Teacher_Klass",
 	joinColumns = {@JoinColumn(name = "Klass_ID", referencedColumnName = "id")},
 	inverseJoinColumns = {@JoinColumn(name = "Teacher_ID", referencedColumnName ="id")})
@@ -71,6 +65,6 @@ public class Klass extends BaseModel implements Serializable {
 	}
 	public void setTeacherList(List<Teacher> teacherList) {
 		this.teacherList = teacherList;
-	}
+	}*/
 	
 }

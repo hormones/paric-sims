@@ -18,7 +18,7 @@ $(document).ready(function(){
 });
 </script> 
 <div>
-	<ul class="breadcrumb" style="font-size: 18px;">
+	<ul class="breadcrumb" style="font-size: 20px;">
 		<c:if test="${college != 'null'}">
 			<li id="college" class="active">${college}</li>
 		</c:if>

@@ -9,6 +9,7 @@ import javax.persistence.FetchType;
 import javax.persistence.JoinTable;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToMany;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 @Entity
@@ -19,7 +20,18 @@ public class Teacher extends BaseCharacter implements Serializable  {
 	 */
 	private static final long serialVersionUID = -7321616712237387305L;
 	
-	//ManyToMany---Klass
+	//@OneToMany
+	private List<Course> courseList;
+
+	@OneToMany(cascade=CascadeType.MERGE,fetch=FetchType.LAZY,mappedBy="teacher",targetEntity=Course.class)
+	public List<Course> getCourseList() {
+		return courseList;
+	}
+	public void setCourseList(List<Course> courseList) {
+		this.courseList = courseList;
+	}
+	
+	/*//ManyToMany---Klass
 	private List<Klass> klassList;
 	
 	//ManyToMany---Student
@@ -45,6 +57,6 @@ public class Teacher extends BaseCharacter implements Serializable  {
 	}
 	public void setKlassList(List<Klass> klassList) {
 		this.klassList = klassList;
-	}
+	}*/
 	
 }

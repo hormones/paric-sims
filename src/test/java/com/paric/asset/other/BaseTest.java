@@ -17,7 +17,6 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.paric.asset.dao.BaseDao;
-import com.paric.asset.dao.StudentDao;
 import com.paric.asset.model.Administrator;
 import com.paric.asset.model.BaseCharacter;
 import com.paric.asset.model.Klass;
@@ -27,7 +26,6 @@ import com.paric.asset.service.BaseCharacterService;
 import com.paric.asset.service.LoginService;
 import com.paric.asset.service.StudentService;
 
-import net.sf.json.JSONArray;
 import net.sf.json.JSONObject;
 
 @RunWith(SpringJUnit4ClassRunner.class)
@@ -54,8 +52,8 @@ public class BaseTest {
 	@Autowired
 	private BaseCharacterService baseCharacterService;
 	
-	@Autowired
-	private StudentDao studentDao;
+	//@Autowired
+	//private StudentDao studentDao;
 	
 	@Test
 	@Rollback(false)
@@ -73,6 +71,7 @@ public class BaseTest {
 		administrator.setUserno("admin");
 		administrator.setUserpwd("123456");
 		baseDao.save(administrator);
+		logger.debug(administrator.getName());
 	}
 	
 	//插入一位教师
@@ -85,24 +84,29 @@ public class BaseTest {
 		teacher.setUserno("60001");
 		teacher.setUserpwd("123456");
 		baseDao.save(teacher);
+		logger.debug(teacher.getName());
+	}
+	
+	//插入学院和专业
+	@SuppressWarnings("unchecked")
+	@Test
+	@Rollback(false)
+	public void test_major(){
+		JSONObject jsonObject = new JSONObject();
 	}
 	
 	//插入一个班级
-		@SuppressWarnings("unchecked")
-		@Test
-		@Rollback(false)
-		public void test_klass(){
-			List<Teacher> teacherList = new ArrayList<Teacher>();
-			Teacher teacher = (Teacher) baseDao.findById(Teacher.class, 2);
-			teacherList.add(teacher);
-			Klass klass = new Klass();
-			klass.setName("一班");
-			klass.setKlassCollege("电气与信息工程学院");
-			klass.setKlassDepartment("电子信息工程");
-			klass.setKlassGrade("2016");
-			klass.setTeacherList(teacherList);
-			baseDao.save(klass);
-		}
+	@SuppressWarnings("unchecked")
+	@Test
+	@Rollback(false)
+	public void test_klass(){
+		List<Teacher> teacherList = new ArrayList<Teacher>();
+		Teacher teacher = (Teacher) baseDao.findById(Teacher.class, 2);
+		teacherList.add(teacher);
+		Klass klass = new Klass();
+		klass.setName("一班");
+		baseDao.save(klass);
+	}
 	
 	//插入二十位学生
 	@SuppressWarnings("unchecked")
@@ -126,7 +130,6 @@ public class BaseTest {
 			student.setStuemail("123456@abc.com");
 			student.setStuIDnumber("123456789987654321");
 			student.setKlass(klass);
-			student.setTeacherList(teacherList);
 			baseDao.save(student);
 		}
 		

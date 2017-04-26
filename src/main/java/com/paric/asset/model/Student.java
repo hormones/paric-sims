@@ -33,11 +33,14 @@ public class Student extends BaseCharacter implements Serializable  {
 	private String stuhomeaddress;//家庭住址
 	private String stunote;//备注
 	
-	//ManyToOne---Klass
-	private Klass klass;
+	//@ManyToOne---Klass
+	private Klass klass; //班级entity
 	
-	//ManyToMany---Teacher
-	private List<Teacher> teacherList;
+	//@ManyToMany
+	private List<Course> courseList; //课程entity
+	
+	/*//@ManyToMany---Teacher
+	private List<Teacher> teacherList;*/
 
 	public String getStuemail() {
 		return stuemail;
@@ -109,7 +112,7 @@ public class Student extends BaseCharacter implements Serializable  {
 		this.stunote = stunote;
 	}
 	
-	@ManyToMany(cascade = CascadeType.PERSIST, fetch = FetchType.LAZY)
+	/*@ManyToMany(cascade = CascadeType.PERSIST, fetch = FetchType.LAZY)
 	@JoinTable(name = "Teacher_Student",
 	joinColumns = {@JoinColumn(name = "Student_ID", referencedColumnName = "id")},
 	inverseJoinColumns = {@JoinColumn(name = "Teacher_ID", referencedColumnName ="id")})
@@ -118,7 +121,7 @@ public class Student extends BaseCharacter implements Serializable  {
 	}
 	public void setTeacherList(List<Teacher> teacherList) {
 		this.teacherList = teacherList;
-	}
+	}*/
 	
 	@ManyToOne(cascade=CascadeType.MERGE,fetch=FetchType.LAZY,targetEntity=Klass.class)
 	public Klass getKlass() {
@@ -126,6 +129,17 @@ public class Student extends BaseCharacter implements Serializable  {
 	}
 	public void setKlass(Klass klass) {
 		this.klass = klass;
+	}
+
+	@ManyToMany(cascade = CascadeType.PERSIST, fetch = FetchType.LAZY)
+	@JoinTable(name = "score",
+	joinColumns = {@JoinColumn(name = "student_id", referencedColumnName = "id")},
+	inverseJoinColumns = {@JoinColumn(name = "course_id", referencedColumnName ="id")})
+	public List<Course> getCourseList() {
+		return courseList;
+	}
+	public void setCourseList(List<Course> courseList) {
+		this.courseList = courseList;
 	}
 	
 }

@@ -18,7 +18,12 @@
     });
 </script>
 	<form class="form-horizontal" role="form">
-		<div class="form-group">
+		<div class="form-group" style="margin-top: 10px;">
+			<div class="col-sm-12 text-center">
+				<h2>学生个人信息管理</h2>
+			</div>
+		</div>
+		<div class="form-group" style="margin-top: 40px;">
 			<label for="userno" class="col-sm-1 col-md-offset-1 control-label">学号</label>
 			<div class="col-sm-3">
 				<input type="text" id="userno" class="userno form-control" name="userno" placeholder="请输入学号" disabled/>
@@ -28,7 +33,7 @@
 				<input type="text" id="name" class="name form-control" name="name" placeholder="请输入姓名"/>
 			</div>
 		</div>
-		<div class="form-group">
+		<div class="form-group" style="margin-top: 40px;">
 			<label for="stunationality" class="col-sm-1 col-md-offset-1 control-label">民族</label>
 			<div class="col-sm-3">
 				<input type="text" id="stunationality" class="stunationality form-control" name="stunationality" placeholder="请输入民族"/>
@@ -38,7 +43,7 @@
 				<input type="text" id="stusex" class="stusex form-control" name="stusex" placeholder="请输入性别"/>
 			</div>
 		</div>
-		<div class="form-group">
+		<div class="form-group" style="margin-top: 40px;">
 			<label for="college" class="col-sm-1 col-md-offset-1 control-label">学院</label>
 			<div class="col-sm-3">
 				<input type="text" id="college" class="college form-control" name="college" placeholder="请输入学院"/>
@@ -48,7 +53,7 @@
 				<input type="text" id="department" class="department form-control" name="department" placeholder="请输入专业"/>
 			</div>
 		</div>
-		<div class="form-group">
+		<div class="form-group" style="margin-top: 40px;">
 			<label for="stuemail" class="col-sm-1 col-md-offset-1 control-label">邮箱</label>
 			<div class="col-sm-3">
 				<input type="text" id="stuemail" class="stuemail form-control" name="stuemail" placeholder="请输入邮箱"/>
@@ -58,7 +63,7 @@
 				<input type="text" id="klassName" class="klassName form-control" name="klassName" placeholder="请输入班级"/>
 			</div>
 		</div>
-		<div class="form-group">
+		<div class="form-group" style="margin-top: 40px;">
 			<label for="stubirth" class="col-sm-1 col-md-offset-1 control-label">出生日期</label>
 		    <div class="col-sm-3">
 	            <div class="input-group date form_datetime">
@@ -76,7 +81,7 @@
 				</div>
 		    </div>
 		</div>
-		<div class="form-group">
+		<div class="form-group" style="margin-top: 40px;">
 			<label for="stupolitics" class="col-sm-1 col-md-offset-1 control-label">政治面貌</label>
 			<div class="col-sm-3">
 				<input type="text" id="stupolitics" class="stupolitics form-control" name="stupolitics" placeholder="请输入政治面貌"/>
@@ -86,7 +91,7 @@
 				<input type="text" id="stuIDnumber" class="stuIDnumber form-control" name="stuIDnumber"/>
 			</div>
 		</div>
-		<div class="form-group">
+		<div class="form-group" style="margin-top: 40px;">
 			<label for="stucomefrom" class="col-sm-1 col-md-offset-1 control-label">生源地</label>
 			<div class="col-sm-3">
 				<input type="text" id="stucomefrom" class="stucomefrom form-control" name="stucomefrom" placeholder="请输入家庭地址"/>
@@ -96,13 +101,13 @@
 				<input type="text" id="stuhomeaddress" class="stuhomeaddress form-control" name="stuhomeaddress" placeholder="请输入生源地"/>
 			</div>
 		</div>
-		<div class="form-group">
+		<div class="form-group" style="margin-top: 40px;">
 			<label for="stunote" class="col-sm-1 col-md-offset-1 control-label">备注</label>
 			<div class="col-sm-6">
-				<textarea id="stunote" class="stunote form-control" name="stunote"></textarea>
+				<textarea id="stunote" class="stunote form-control" name="stunote" rows="4"></textarea>
 			</div>
 		</div>
-		<div class="form-group">
+		<div class="form-group" style="margin-top: 40px;">
 			<div class="col-sm-1 col-md-offset-8">
 				<button type="button" id="saveStuInfoBtn" class="form-control btn btn-info">保存</button>
 			</div>
