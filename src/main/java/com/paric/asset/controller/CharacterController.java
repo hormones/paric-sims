@@ -1,7 +1,6 @@
 package com.paric.asset.controller;
 
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
@@ -14,17 +13,11 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.paric.asset.model.BaseCharacter;
-import com.paric.asset.model.Student;
 import com.paric.asset.service.BaseCharacterService;
-import com.paric.asset.service.LoginService;
-
 
 @Controller
 @RequestMapping("/character.do")
 public class CharacterController {
-	
-	@Autowired
-	private LoginService loginService;
 	
 	@SuppressWarnings("rawtypes")
 	@Autowired
@@ -112,18 +105,6 @@ public class CharacterController {
 	public String loginOut(HttpServletRequest request, HttpServletResponse response){
 		request.getSession().invalidate();
 		return "redirect:login.jsp";
-	}
-	
-	//查看某个学生信息页面
-	@RequestMapping(params = "dispatch=stuSearch")
-	@ResponseBody
-	public Map<String, Object> stuSearch(HttpServletRequest request, HttpServletResponse response){
-		String userno = request.getParameter("userno");
-		Map<String, Object> map = new HashMap<String, Object>();
-		List<Student> list = loginService.stuSearch(userno);
-		map.put("success", true);
-		map.put("result", list);
-		return map;
 	}
 	
 	//跳转到查看某个学生信息页面

@@ -25,11 +25,11 @@ public class ContentController {
 	//跳转到学生表格页面
 	@RequestMapping(params = "dispatch=studentTablePage")
 	@ResponseBody
-	public ModelAndView studentTablePage(@RequestParam String klass, String department, String college){
+	public ModelAndView studentTablePage(@RequestParam String klassName, String majorName, String instituteName){
 		ModelAndView mv = new ModelAndView("studentTablePage");
-		mv.addObject("klass", klass);
-		mv.addObject("department", department);
-		mv.addObject("college", college);
+		mv.addObject("klassName", klassName);
+		mv.addObject("majorName", majorName);
+		mv.addObject("instituteName", instituteName);
 		return mv;
 	}
 	

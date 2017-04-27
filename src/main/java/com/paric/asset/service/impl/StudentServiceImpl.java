@@ -31,7 +31,7 @@ public class StudentServiceImpl extends BaseCharacterServiceImpl<Student> implem
 			JSONObject jsonObject = new JSONObject();
 			jsonObject.put("userno", object[0]);
 			jsonObject.put("name", object[1]);
-			jsonObject.put("stusex", object[2]);
+			jsonObject.put("gender", object[2]);
 			jsonObject.put("klassName", object[3]);
 			jsonArray.add(jsonObject);
 		}
@@ -41,25 +41,25 @@ public class StudentServiceImpl extends BaseCharacterServiceImpl<Student> implem
 	}
 
 	@Override
-	public String getStuInfoData(String userno) {
-		Student student = studentDao.getStuInfoData(userno);
+	public String getStuInfoData(String keyword) {
+		Student student = studentDao.getStuInfoData(keyword);
 		JSONObject jsonObject = new JSONObject();
 		jsonObject.put("userno", student.getUserno());
 		jsonObject.put("name", student.getName());
-		jsonObject.put("stunationality", student.getStunationality());
-		jsonObject.put("stusex", student.getStusex());
-		//jsonObject.put("college", student.getKlass().getKlassCollege());
-		//jsonObject.put("department", student.getKlass().getKlassDepartment());
-		jsonObject.put("stuemail", student.getStuemail());
+		jsonObject.put("nationality", student.getNationality());
+		jsonObject.put("gender", student.getGender());
+		jsonObject.put("instituteName", student.getKlass().getMajor().getInstitute().getName());
+		jsonObject.put("majorName", student.getKlass().getMajor().getName());
+		jsonObject.put("email", student.getEmail());
 		jsonObject.put("klassName", student.getKlass().getName());
-		jsonObject.put("stubirth", String.valueOf(student.getStubirth()));
+		jsonObject.put("birthday", String.valueOf(student.getBirthday()));
 		jsonObject.put("stuintime", String.valueOf(student.getStuintime()));
-		jsonObject.put("stupolitics", student.getStupolitics());
-		jsonObject.put("stuIDnumber", student.getStuIDnumber());
+		jsonObject.put("politics", student.getPolitics());
+		jsonObject.put("idNumber", student.getIdNumber());
 		jsonObject.put("stucomefrom", student.getStucomefrom());
-		jsonObject.put("stuhomeaddress", student.getStuhomeaddress());
-		jsonObject.put("stunote", student.getStunote());
+		jsonObject.put("homeaddress", student.getHomeaddress());
+		jsonObject.put("note", student.getNote());
 		return jsonObject.toString();
 	}
-	
+
 }

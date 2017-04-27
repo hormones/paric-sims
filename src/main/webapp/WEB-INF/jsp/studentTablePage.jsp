@@ -11,22 +11,22 @@
 <script type="text/javascript">
 $(document).ready(function(){
 	$(".showModal").load("content.do?dispatch=toAddStudentModal");
-	var college = "${college}";
-	var department = "${department}";
-	var klassName = "${klass}";
-	initTable(college, department, klassName);
+	var instituteName = "${instituteName}";
+	var majorName = "${majorName}";
+	var klassName = "${klassName}";
+	initTable(instituteName, majorName, klassName);
 });
 </script> 
 <div>
 	<ul class="breadcrumb" style="font-size: 20px;">
-		<c:if test="${college != 'null'}">
-			<li id="college" class="active">${college}</li>
+		<c:if test="${instituteName != 'null'}">
+			<li id="instituteName" class="active">${instituteName}</li>
 		</c:if>
-		<c:if test="${department != 'null'}">
-			<li id="department" class="active">${department}</li>
+		<c:if test="${majorName != 'null'}">
+			<li id="majorName" class="active">${majorName}</li>
 		</c:if>
-		<c:if test="${klass != 'null'}">
-			<li id="klassName" class="active">${klass}</li>
+		<c:if test="${klassName != 'null'}">
+			<li id="klassName" class="active">${klassName}</li>
 		</c:if>
 	</ul>
 </div>
@@ -41,7 +41,7 @@ $(document).ready(function(){
 			<th data-field="userno">学号</th>
 			<th data-field="name">姓名</th>
 			<th data-field="klassName">班级</th>
-			<th data-field="stusex">性别</th>
+			<th data-field="gender">性别</th>
 			<th data-field="operate" data-formatter="operateFormatter" data-events="operateEvents" data-width="20%">操作</th>
 		</tr>
 	</thead>

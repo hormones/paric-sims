@@ -11,5 +11,5 @@ public interface StudentDao extends BaseCharacterDao<Student> {
 	public int getStudentTableRows(String teacherName, String college, String department, String klassName);
 	
 	public Student getStuInfoData(String keyWord);
-	
+
 }

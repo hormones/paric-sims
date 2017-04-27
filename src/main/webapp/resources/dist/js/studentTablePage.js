@@ -1,4 +1,4 @@
-function initTable(college, department, klassName) {
+function initTable(instituteName, majorName, klassName) {
 	//先销毁表格  
 	$('#studentTable').bootstrapTable('destroy');
 	//初始化表格,动态从服务器加载数据  
@@ -29,8 +29,8 @@ function initTable(college, department, klassName) {
 			var param = {
 				pageNumber : params.pageNumber,
 				pageSize : params.pageSize,
-				college : college,
-				department : department,
+				instituteName : instituteName,
+				majorName : majorName,
 				klassName : klassName,
 			};
 			return param;

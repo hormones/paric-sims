@@ -14,19 +14,19 @@ public class StudentDaoImpl extends BaseCharacterDaoImpl<Student> implements Stu
 
 	@SuppressWarnings("unchecked")
 	@Override
-	public List<Object[]> loadStudentTable(String teacherName, String college,String department,String klassName, int pageNumber, int pageSize) {
+	public List<Object[]> loadStudentTable(String teacherName, String instituteName,String majorName,String klassName, int pageNumber, int pageSize) {
 		String hql;
-		hql = "SELECT s.userno,s.name,s.stusex,s.klass.name FROM Student s";
+		hql = "SELECT s.userno,s.name,s.gender,s.klass.name FROM Student s";
 		if(StringUtils.isNotBlank(teacherName)){
-			hql += " LEFT JOIN s.teacherList t WHERE t.name='" + teacherName + "'";
+			hql += " LEFT JOIN s.courseList.teacher t WHERE t.name='" + teacherName + "'";
 		} else {
 			hql += " WHERE 1=1";
 		}
 		if(!klassName.equals("查看全部")){
 			if(klassName.equals("全部")){
-				hql += " AND s.klass.klassCollege='" + college +"' AND s.klass.klassDepartment='" + department + "'";
+				hql += " AND s.klass.major.institute.name='" + instituteName +"' AND s.klass.major.name='" + majorName + "'";
 			} else{
-				hql += " AND s.klass.klassCollege='" + college +"' AND s.klass.klassDepartment='" + department + "' AND s.klass.name='" + klassName + "'";
+				hql += " AND s.klass.major.institute.name='" + instituteName +"' AND s.klass.major.name='" + majorName + "' AND s.klass.name='" + klassName + "'";
 			}
 		}
 		logger.debug(hql);
@@ -37,19 +37,19 @@ public class StudentDaoImpl extends BaseCharacterDaoImpl<Student> implements Stu
 	}
 	
 	@Override
-	public int getStudentTableRows(String teacherName, String college,String department,String klassName) {
+	public int getStudentTableRows(String teacherName, String instituteName, String majorName, String klassName) {
 		String hql;
 		hql = "SELECT COUNT(*) FROM Student s";
 		if(StringUtils.isNotBlank(teacherName)){
-			hql += " LEFT JOIN s.teacherList t WHERE t.name='" + teacherName + "'";
+			hql += " LEFT JOIN s.courseList.teacher t WHERE t.name='" + teacherName + "'";
 		} else {
 			hql += " WHERE 1=1";
 		}
 		if(!klassName.equals("查看全部")){
 			if(klassName.equals("全部")){
-				hql += " AND s.klass.klassCollege='" + college +"' AND s.klass.klassDepartment='" + department + "'";
+				hql += " AND s.klass.major.institute.name='" + instituteName +"' AND s.klass.major.name='" + majorName + "'";
 			} else{
-				hql += " AND s.klass.klassCollege='" + college +"' AND s.klass.klassDepartment='" + department + "' AND s.klass.name='" + klassName + "'";
+				hql += " AND s.klass.major.institute.name='" + instituteName +"' AND s.klass.major.name='" + majorName + "' AND s.klass.name='" + klassName + "'";
 			}
 		}
 		logger.debug(hql);
@@ -60,7 +60,7 @@ public class StudentDaoImpl extends BaseCharacterDaoImpl<Student> implements Stu
 
 	@Override
 	public Student getStuInfoData(String keyWord) {
-		String hql = "FROM Student WHERE userno='" + keyWord + "' OR NAME='" + keyWord + "'";
+		String hql = "FROM Student WHERE userno='" + keyWord + "' OR name='" + keyWord + "'";
 		logger.debug(hql);
 		Query query = this.sessionFactory.getCurrentSession().createQuery(hql);
 		Student student = (Student) query.list().get(0);

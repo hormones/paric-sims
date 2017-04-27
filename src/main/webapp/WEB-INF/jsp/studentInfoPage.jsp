@@ -44,13 +44,13 @@
 			</div>
 		</div>
 		<div class="form-group" style="margin-top: 40px;">
-			<label for="college" class="col-sm-1 col-md-offset-1 control-label">学院</label>
+			<label for="instituteName" class="col-sm-1 col-md-offset-1 control-label">学院</label>
 			<div class="col-sm-3">
-				<input type="text" id="college" class="college form-control" name="college" placeholder="请输入学院"/>
+				<input type="text" id="instituteName" class="instituteName form-control" name="instituteName" placeholder="请输入学院"/>
 			</div>
-			<label for="department" class="col-sm-1 col-md-offset-1 control-label">专业</label>
+			<label for="majorName" class="col-sm-1 col-md-offset-1 control-label">专业</label>
 			<div class="col-sm-3">
-				<input type="text" id="department" class="department form-control" name="department" placeholder="请输入专业"/>
+				<input type="text" id="majorName" class="majorName form-control" name="majorName" placeholder="请输入专业"/>
 			</div>
 		</div>
 		<div class="form-group" style="margin-top: 40px;">

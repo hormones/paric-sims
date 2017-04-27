@@ -4,8 +4,23 @@ import com.paric.asset.model.Student;
 
 public interface StudentService extends BaseCharacterService<Student> {
 	
+	/***
+	 * 以班级为单位通过表格展示学生信息
+	 * @param teacherName
+	 * @param college
+	 * @param department
+	 * @param klassName
+	 * @param pageNumber
+	 * @param pageSize
+	 * @return
+	 */
 	public String loadStudentTable(String teacherName, String college,String department,String klassName, int pageNumber, int pageSize);
 
-	public String getStuInfoData(String userno);
+	/***
+	 * 通过关键字获得某个学生的信息
+	 * @param keyword
+	 * @return
+	 */
+	public String getStuInfoData(String keyword);
 
 }

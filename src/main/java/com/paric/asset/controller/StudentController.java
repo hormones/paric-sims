@@ -34,4 +34,5 @@ public class StudentController {
 	public String stuInfoData(HttpServletRequest request, @RequestParam String userno){
 		return studentService.getStuInfoData(userno);
 	}
+
 }

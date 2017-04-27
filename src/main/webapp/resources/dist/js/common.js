@@ -18,41 +18,41 @@ $(document).ready(function() {
 	});
 	
 	//菜单：学生管理
-	$(".klass").click(function(){
-		var klass = $(this).html();
-		var department = $(this).parents(".department").children(0).html();
-		var college = $(this).parents(".college").children(0).html();
-		$(".showContent").load("content.do?dispatch=studentTablePage&college="+college+"&department="+department+"&klass="+klass);
+	$(".klassName").click(function(){
+		var klassName = $(this).html();
+		var majorName = $(this).parents(".majorName").children(0).html();
+		var instituteName = $(this).parents(".instituteName").children(0).html();
+		$(".showContent").load("content.do?dispatch=studentTablePage&instituteName="+instituteName+"&majorName="+majorName+"&klassName="+klassName);
 	});
 	
 	//菜单搜索框：检索学生信息
 	$("#stuSearchBtn").click(function(){
-		var userno = $("#stuSearch").val();
-		viewOneStuInfo(userno);
+		var keyword = $("#stuSearch").val();
+		viewOneStuInfo(keyword);
 	});
 	
 });
 
-//根据学号发送ajax请求返回学生详细信息
-function viewOneStuInfo(userno){
-	$.post("student.do?dispatch=stuInfoData",{"userno": userno},function(data){
+//根据学号或姓名发送ajax请求返回学生详细信息
+function viewOneStuInfo(keyword){
+	$.post("student.do?dispatch=stuInfoData",{"keyword": keyword},function(data){
 		if(data!=null){
-			$(".showContent").load("content.do?dispatch=studentInfoPage",function(e){
+			$(".showContent").load("content.do?dispatch=studentInfoPage",function(){
 				$("#userno").val(data.userno);
 				$("#name").val(data.name);
-				$("#stunationality").val(data.stunationality);
-				$("#stusex").val(data.stusex);
-				$("#college").val(data.college);
-				$("#department").val(data.department);
-				$("#stuemail").val(data.stuemail);
+				$("#stunationality").val(data.nationality);
+				$("#stusex").val(data.gender);
+				$("#instituteName").val(data.instituteName);
+				$("#majorName").val(data.majorName);
+				$("#stuemail").val(data.email);
 				$("#klassName").val(data.klassName);
-				$("#stubirth").val(data.stubirth);
+				$("#stubirth").val(data.birthday);
 				$("#stuintime").val(data.stuintime);
-				$("#stupolitics").val(data.stupolitics);
+				$("#stupolitics").val(data.politics);
 				$("#stucomefrom").val(data.stucomefrom);
-				$("#stuhomeaddress").val(data.stuhomeaddress);
-				$("#stuIDnumber").val(data.stuIDnumber);
-				$("#stunote").val(data.stunote);
+				$("#stuhomeaddress").val(data.homeaddress);
+				$("#stuIDnumber").val(data.idNumber);
+				$("#stunote").val(data.note);
 			});
 		} else {
 			alert("未检索到学生信息！");
