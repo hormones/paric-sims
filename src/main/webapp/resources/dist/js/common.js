@@ -14,7 +14,7 @@ $(document).ready(function() {
 	});
 	
 	$(".viewStudentTable").click(function(){
-		$(".showContent").load("content.do?dispatch=studentTablePage&klass="+$(this).html());
+		$(".showContent").load("content.do?dispatch=studentTablePage&klassName="+$(this).html());
 	});
 	
 	//菜单：学生管理
@@ -27,8 +27,12 @@ $(document).ready(function() {
 	
 	//菜单搜索框：检索学生信息
 	$("#stuSearchBtn").click(function(){
-		var keyword = $("#stuSearch").val();
-		viewOneStuInfo(keyword);
+		var keyword = $.trim($("#stuSearch").val());
+		if(0!=keyword.length){
+			viewOneStuInfo(keyword);
+		} else {
+			alert("请输入学号或姓名！");
+		}
 	});
 	
 });
@@ -36,7 +40,7 @@ $(document).ready(function() {
 //根据学号或姓名发送ajax请求返回学生详细信息
 function viewOneStuInfo(keyword){
 	$.post("student.do?dispatch=stuInfoData",{"keyword": keyword},function(data){
-		if(data!=null){
+		if(undefined != data.userno){
 			$(".showContent").load("content.do?dispatch=studentInfoPage",function(){
 				$("#userno").val(data.userno);
 				$("#name").val(data.name);

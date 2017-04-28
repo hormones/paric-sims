@@ -63,8 +63,10 @@ public class StudentDaoImpl extends BaseCharacterDaoImpl<Student> implements Stu
 		String hql = "FROM Student WHERE userno='" + keyWord + "' OR name='" + keyWord + "'";
 		logger.debug(hql);
 		Query query = this.sessionFactory.getCurrentSession().createQuery(hql);
-		Student student = (Student) query.list().get(0);
-		return student;
+		if(query.list().size() > 0) {
+			return (Student) query.list().get(0);
+		}
+		return null;
 	}
 
 }

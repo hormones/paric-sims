@@ -2,6 +2,8 @@ package com.paric.asset.service;
 
 import com.paric.asset.model.Student;
 
+import net.sf.json.JSONObject;
+
 public interface StudentService extends BaseCharacterService<Student> {
 	
 	/***
@@ -21,6 +23,6 @@ public interface StudentService extends BaseCharacterService<Student> {
 	 * @param keyword
 	 * @return
 	 */
-	public String getStuInfoData(String keyword);
+	public JSONObject getStuInfoData(String keyword);
 
 }

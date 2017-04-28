@@ -34,33 +34,40 @@
 			</div>
 		</div>
 		<div class="form-group" style="margin-top: 40px;">
-			<label for="stunationality" class="col-sm-1 col-md-offset-1 control-label">民族</label>
+			<label for="instituteName" class="col-sm-1 col-md-offset-1 control-label">学院</label>
 			<div class="col-sm-3">
-				<input type="text" id="stunationality" class="stunationality form-control" name="stunationality" placeholder="请输入民族"/>
+				<select id="instituteName" class="instituteName form-control" name="instituteName">
+					<option value="外国语学院">外国语学院</option>
+					<option value="管理科学学院">管理科学学院</option>
+					<option value="环境与土木工程学院">环境与土木工程学院</option>
+				</select>
 			</div>
 			<label for="stusex" class="col-sm-1 col-md-offset-1 control-label">性别</label>
 			<div class="col-sm-3">
-				<input type="text" id="stusex" class="stusex form-control" name="stusex" placeholder="请输入性别"/>
+				<select id="stusex" class="stusex form-control" name="stusex">
+					<option value="男">男</option>
+					<option value="女">女</option>
+				</select>
 			</div>
 		</div>
 		<div class="form-group" style="margin-top: 40px;">
-			<label for="instituteName" class="col-sm-1 col-md-offset-1 control-label">学院</label>
-			<div class="col-sm-3">
-				<input type="text" id="instituteName" class="instituteName form-control" name="instituteName" placeholder="请输入学院"/>
-			</div>
 			<label for="majorName" class="col-sm-1 col-md-offset-1 control-label">专业</label>
 			<div class="col-sm-3">
 				<input type="text" id="majorName" class="majorName form-control" name="majorName" placeholder="请输入专业"/>
 			</div>
+			<label for="stunationality" class="col-sm-1 col-md-offset-1 control-label">民族</label>
+			<div class="col-sm-3">
+				<input type="text" id="stunationality" class="stunationality form-control" name="stunationality" placeholder="请输入民族"/>
+			</div>
 		</div>
 		<div class="form-group" style="margin-top: 40px;">
-			<label for="stuemail" class="col-sm-1 col-md-offset-1 control-label">邮箱</label>
-			<div class="col-sm-3">
-				<input type="text" id="stuemail" class="stuemail form-control" name="stuemail" placeholder="请输入邮箱"/>
-			</div>
 			<label for="klassName" class="col-sm-1 col-md-offset-1 control-label">班级</label>
 			<div class="col-sm-3">
 				<input type="text" id="klassName" class="klassName form-control" name="klassName" placeholder="请输入班级"/>
+			</div>
+			<label for="stuemail" class="col-sm-1 col-md-offset-1 control-label">邮箱</label>
+			<div class="col-sm-3">
+				<input type="text" id="stuemail" class="stuemail form-control" name="stuemail" placeholder="请输入邮箱"/>
 			</div>
 		</div>
 		<div class="form-group" style="margin-top: 40px;">

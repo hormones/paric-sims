@@ -18,6 +18,8 @@
 <script type="text/javascript" src="resources/bootstrap-datetimepicker/js/bootstrap-datetimepicker.zh-CN.js"></script>
 
 <link rel="stylesheet" type="text/css" href="resources/dist/css/common.css">
+<!--引入wangEditor.css-->
+<link rel="stylesheet" type="text/css" href="resources/wangEditor-2.1.23/dist/css/wangEditor.min.css">
 <script type="text/javascript" src="resources/dist/js/common.js"></script>
     <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -230,5 +232,8 @@
 	</div>
 	<div class="showModal">
 	</div>
+<!--引入wangEditor.js 注意：javaScript必须放在body最后，否则可能会出现问题-->
+<script type="text/javascript" src="resources/wangEditor-2.1.23/dist/js/wangEditor.min.js"></script>
+
 </body>
 </html>

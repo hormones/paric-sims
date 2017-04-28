@@ -41,25 +41,27 @@ public class StudentServiceImpl extends BaseCharacterServiceImpl<Student> implem
 	}
 
 	@Override
-	public String getStuInfoData(String keyword) {
+	public JSONObject getStuInfoData(String keyword) {
 		Student student = studentDao.getStuInfoData(keyword);
 		JSONObject jsonObject = new JSONObject();
-		jsonObject.put("userno", student.getUserno());
-		jsonObject.put("name", student.getName());
-		jsonObject.put("nationality", student.getNationality());
-		jsonObject.put("gender", student.getGender());
-		jsonObject.put("instituteName", student.getKlass().getMajor().getInstitute().getName());
-		jsonObject.put("majorName", student.getKlass().getMajor().getName());
-		jsonObject.put("email", student.getEmail());
-		jsonObject.put("klassName", student.getKlass().getName());
-		jsonObject.put("birthday", String.valueOf(student.getBirthday()));
-		jsonObject.put("stuintime", String.valueOf(student.getStuintime()));
-		jsonObject.put("politics", student.getPolitics());
-		jsonObject.put("idNumber", student.getIdNumber());
-		jsonObject.put("stucomefrom", student.getStucomefrom());
-		jsonObject.put("homeaddress", student.getHomeaddress());
-		jsonObject.put("note", student.getNote());
-		return jsonObject.toString();
+		if(null!=student){
+			jsonObject.put("userno", student.getUserno());
+			jsonObject.put("name", student.getName());
+			jsonObject.put("nationality", student.getNationality());
+			jsonObject.put("gender", student.getGender());
+			jsonObject.put("instituteName", student.getKlass().getMajor().getInstitute().getName());
+			jsonObject.put("majorName", student.getKlass().getMajor().getName());
+			jsonObject.put("email", student.getEmail());
+			jsonObject.put("klassName", student.getKlass().getName());
+			jsonObject.put("birthday", String.valueOf(student.getBirthday()));
+			jsonObject.put("stuintime", String.valueOf(student.getStuintime()));
+			jsonObject.put("politics", student.getPolitics());
+			jsonObject.put("idNumber", student.getIdNumber());
+			jsonObject.put("stucomefrom", student.getStucomefrom());
+			jsonObject.put("homeaddress", student.getHomeaddress());
+			jsonObject.put("note", student.getNote());
+		}
+		return jsonObject;
 	}
 
 }

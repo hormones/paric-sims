@@ -44,4 +44,16 @@ public class ContentController {
 	public String toAddStudentModal(){
 		return "addStudentModal";
 	}
+	
+	//跳转到查看公告页面
+	@RequestMapping(params = "dispatch=toViewAnnouncement")
+	public String toViewAnnouncement(){
+		return "viewAnnouncement";
+	}
+	
+	//跳转到修改和新增公告页面
+	@RequestMapping(params = "dispatch=toModifyOrAddAnnouncement")
+	public String toModifyOrAddAnnouncement(){
+		return "modifyOrAddAnnouncement";
+	}
 }
