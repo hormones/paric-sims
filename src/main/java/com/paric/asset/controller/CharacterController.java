@@ -107,9 +107,4 @@ public class CharacterController {
 		return "redirect:login.jsp";
 	}
 	
-	//跳转到查看某个学生信息页面
-	@RequestMapping(params = "dispatch=viewStudentInfo")
-	public String studentInfo(HttpServletRequest request, HttpServletResponse response){
-		return "studentInfoPage";
-	}
 }

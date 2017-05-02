@@ -1,8 +1,8 @@
-<%@ page language="java" contentType="text/html; charset=utf-8"
-	pageEncoding="utf-8"%>
+<%@ page language="java" contentType="text/html; charset=utf-8" pageEncoding="utf-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 
-<link rel="stylesheet" type="text/css" href="resources/dist/css/announcementPage.css">
+<link rel="stylesheet" type="text/css" href="resources/dist/css/announcement.css">
 <link rel="stylesheet" type="text/css" href="resources/bootstrap-news-box/css/site.css">
 
 <script type="text/javascript" src="resources/dist/js/announcement.js"></script>
@@ -33,7 +33,7 @@ $("#annoumcementContent").load("content.do?dispatch=toViewAnnouncement");
 </script>
 
 <div id="announcementDiv" class="col-md-12">
-	<div class="col-md-3">
+	<div class="col-md-4">
 		<div>
 		</div>
 		<div class="panel panel-default">
@@ -100,15 +100,17 @@ $("#annoumcementContent").load("content.do?dispatch=toViewAnnouncement");
 			<div class="panel-footer"></div>
 		</div> <!-- 滚动公告栏 -->
 	</div> <!-- 公告栏左侧 -->
-	<div class="col-md-9">
-		<div>
-			<!-- Nav tabs -->
-			<ul class="nav nav-tabs col-md-12" role="tablist">
-				<li role="presentation" class="active"><a href="#home" aria-controls="home" role="tab" data-toggle="tab">查看公告</a></li>
-				<li role="presentation"><a href="#profile" aria-controls="profile" role="tab" data-toggle="tab">修改公告</a></li>
-				<li role="presentation"><a href="#messages" aria-controls="messages" role="tab" data-toggle="tab">新增公告</a></li>
-			</ul>
-		</div>
+	<div class="col-md-8">
+		<c:if test="${identity == 'Administrator'}">
+			<div>
+				<!-- Nav tabs -->
+				<ul id="myTabs" class="nav nav-tabs col-md-12" role="tablist">
+					<li role="presentation" class="active"><a href="#view" aria-controls="view" role="tab" data-toggle="tab">查看公告</a></li>
+					<li role="presentation"><a href="#modify" aria-controls="modify" role="tab" data-toggle="tab">修改公告</a></li>
+					<li role="presentation"><a href="#add" aria-controls="add" role="tab" data-toggle="tab">新增公告</a></li>
+				</ul>
+			</div>
+		</c:if>
 		<div id="annoumcementContent" class="col-md-12">
 		</div>
 	</div>

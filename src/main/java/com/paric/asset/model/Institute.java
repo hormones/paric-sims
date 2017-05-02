@@ -22,6 +22,9 @@ public class Institute extends BaseModel implements Serializable {
 	
 	//@OneToMany
 	private List<Major> majorList; //专业entity
+	
+	//@OneToMany
+	private List<Teacher> teacherList; //教师entity
 
 	public String getCode() {
 		return code;
@@ -36,6 +39,14 @@ public class Institute extends BaseModel implements Serializable {
 	}
 	public void setMajorList(List<Major> majorList) {
 		this.majorList = majorList;
+	}
+	
+	@OneToMany(cascade=CascadeType.MERGE,fetch=FetchType.LAZY,mappedBy="institute",targetEntity=Teacher.class)
+	public List<Teacher> getTeacherList() {
+		return teacherList;
+	}
+	public void setTeacherList(List<Teacher> teacherList) {
+		this.teacherList = teacherList;
 	}
 	
 }

@@ -6,11 +6,11 @@
 <script type="text/javascript" src="resources/bootstrap-table-v1.11.1/dist/bootstrap-table.min.js"></script>
 <script type="text/javascript" src="resources/bootstrap-table-v1.11.1/dist/locale/bootstrap-table-zh-CN.min.js"></script>
 
-<script type="text/javascript" src="resources/dist/js/studentTablePage.js"></script>
+<script type="text/javascript" src="resources/dist/js/studentTable.js"></script>
 
 <script type="text/javascript">
 $(document).ready(function(){
-	$(".showModal").load("content.do?dispatch=toAddStudentModal");
+	$(".showModal").load("content.do?dispatch=toStudentInfo");
 	var instituteName = "${instituteName}";
 	var majorName = "${majorName}";
 	var klassName = "${klassName}";
@@ -18,15 +18,15 @@ $(document).ready(function(){
 });
 </script> 
 <div>
-	<ul class="breadcrumb" style="font-size: 20px;">
+	<ul class="breadcrumb" style="font-size: 20px; background-color: white;">
 		<c:if test="${instituteName != 'null'}">
-			<li id="instituteName" class="active">${instituteName}</li>
+			<li id="instituteName">${instituteName}</li>
 		</c:if>
 		<c:if test="${majorName != 'null'}">
-			<li id="majorName" class="active">${majorName}</li>
+			<li id="majorName">${majorName}</li>
 		</c:if>
 		<c:if test="${klassName != 'null'}">
-			<li id="klassName" class="active">${klassName}</li>
+			<li id="klassName">${klassName}</li>
 		</c:if>
 	</ul>
 </div>
@@ -40,6 +40,8 @@ $(document).ready(function(){
 		<tr>
 			<th data-field="userno">学号</th>
 			<th data-field="name">姓名</th>
+			<th data-field="instituteName">学院</th>
+			<th data-field="majorName">专业</th>
 			<th data-field="klassName">班级</th>
 			<th data-field="gender">性别</th>
 			<th data-field="operate" data-formatter="operateFormatter" data-events="operateEvents" data-width="20%">操作</th>

@@ -20,7 +20,7 @@ public class Announcement extends BaseModel implements Serializable {
 	
 	private String content; //内容
 	
-	private Date createTime; //建立时间
+	private Date modifyTime; //修改时间
 	
 	//@ManyToOne
 	private Administrator administrator; //管理员entity
@@ -32,13 +32,13 @@ public class Announcement extends BaseModel implements Serializable {
 		this.content = content;
 	}
 
-	public Date getCreateTime() {
-		return createTime;
+	public Date getModifyTime() {
+		return modifyTime;
 	}
-	public void setCreateTime(Date createTime) {
-		this.createTime = createTime;
+	public void setModifyTime(Date modifyTime) {
+		this.modifyTime = modifyTime;
 	}
-
+	
 	@ManyToOne(cascade=CascadeType.MERGE,fetch=FetchType.LAZY,targetEntity=Administrator.class)
 	public Administrator getAdministrator() {
 		return administrator;

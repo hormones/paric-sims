@@ -1,20 +1,20 @@
 $(document).ready(function() {
 	
 	//初始化加载公告
-	$(".showContent").load("content.do?dispatch=announcementPage");
+	$(".showContent").load("content.do?dispatch=toAnnouncement");
 	
 	//菜单：点击公告
 	$("#showAnnouncementPage").click(function() {
-		$(".showContent").load("content.do?dispatch=announcementPage");
+		$(".showContent").load("content.do?dispatch=toAnnouncement");
 	});
 	
 	//菜单：点击修改密码
 	$("#showRevisePwdPage").click(function() {
-		$(".showContent").load("content.do?dispatch=revisePwdPage");
+		$(".showContent").load("content.do?dispatch=toModifyPwd");
 	});
 	
 	$(".viewStudentTable").click(function(){
-		$(".showContent").load("content.do?dispatch=studentTablePage&klassName="+$(this).html());
+		$(".showContent").load("content.do?dispatch=toStudentTable&klassName="+$(this).html());
 	});
 	
 	//菜单：学生管理
@@ -22,7 +22,7 @@ $(document).ready(function() {
 		var klassName = $(this).html();
 		var majorName = $(this).parents(".majorName").children(0).html();
 		var instituteName = $(this).parents(".instituteName").children(0).html();
-		$(".showContent").load("content.do?dispatch=studentTablePage&instituteName="+instituteName+"&majorName="+majorName+"&klassName="+klassName);
+		$(".showContent").load("content.do?dispatch=toStudentTable&instituteName="+instituteName+"&majorName="+majorName+"&klassName="+klassName);
 	});
 	
 	//菜单搜索框：检索学生信息
@@ -41,15 +41,15 @@ $(document).ready(function() {
 function viewOneStuInfo(keyword){
 	$.post("student.do?dispatch=stuInfoData",{"keyword": keyword},function(data){
 		if(undefined != data.userno){
-			$(".showContent").load("content.do?dispatch=studentInfoPage",function(){
+			$(".showContent").load("content.do?dispatch=toStudentInfo",function(){
 				$("#userno").val(data.userno);
 				$("#name").val(data.name);
 				$("#stunationality").val(data.nationality);
 				$("#stusex").val(data.gender);
-				$("#instituteName").val(data.instituteName);
-				$("#majorName").val(data.majorName);
+				$("#instituteId").val(data.instituteId);
+				$("#majorId").val(data.majorId);
 				$("#stuemail").val(data.email);
-				$("#klassName").val(data.klassName);
+				$("#klassId").val(data.klassId);
 				$("#stubirth").val(data.birthday);
 				$("#stuintime").val(data.stuintime);
 				$("#stupolitics").val(data.politics);

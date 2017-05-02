@@ -32,7 +32,9 @@ public class StudentServiceImpl extends BaseCharacterServiceImpl<Student> implem
 			jsonObject.put("userno", object[0]);
 			jsonObject.put("name", object[1]);
 			jsonObject.put("gender", object[2]);
-			jsonObject.put("klassName", object[3]);
+			jsonObject.put("instituteName", object[3]);
+			jsonObject.put("majorName", object[4]);
+			jsonObject.put("klassName", object[5]);
 			jsonArray.add(jsonObject);
 		}
 		jsonObjects.put("rows", jsonArray);
@@ -49,10 +51,10 @@ public class StudentServiceImpl extends BaseCharacterServiceImpl<Student> implem
 			jsonObject.put("name", student.getName());
 			jsonObject.put("nationality", student.getNationality());
 			jsonObject.put("gender", student.getGender());
-			jsonObject.put("instituteName", student.getKlass().getMajor().getInstitute().getName());
-			jsonObject.put("majorName", student.getKlass().getMajor().getName());
+			jsonObject.put("instituteId", student.getKlass().getMajor().getInstitute().getId());
+			jsonObject.put("majorId", student.getKlass().getMajor().getId());
 			jsonObject.put("email", student.getEmail());
-			jsonObject.put("klassName", student.getKlass().getName());
+			jsonObject.put("klassId", student.getKlass().getId());
 			jsonObject.put("birthday", String.valueOf(student.getBirthday()));
 			jsonObject.put("stuintime", String.valueOf(student.getStuintime()));
 			jsonObject.put("politics", student.getPolitics());

@@ -10,12 +10,9 @@
 
 <link rel="stylesheet" type="text/css" href="resources/bootstrap-3.3.7-dist/css/bootstrap.min.css">
 <link rel="stylesheet" type="text/css" href="resources/bootstrap-3.3.7-dist/css/bootstrap-theme.min.css">
-<link rel="stylesheet" type="text/css" href="resources/bootstrap-datetimepicker/css/bootstrap-datetimepicker.min.css">
 
 <script type="text/javascript" src="resources/js/jquery-3.1.1.min.js"></script>
 <script type="text/javascript" src="resources/bootstrap-3.3.7-dist/js/bootstrap.min.js"></script>
-<script type="text/javascript" src="resources/bootstrap-datetimepicker/js/bootstrap-datetimepicker.min.js"></script>
-<script type="text/javascript" src="resources/bootstrap-datetimepicker/js/bootstrap-datetimepicker.zh-CN.js"></script>
 
 <link rel="stylesheet" type="text/css" href="resources/dist/css/common.css">
 <!--引入wangEditor.css-->
@@ -212,12 +209,12 @@
 		        <div class="form-group">
 		          <input id="stuSearch" class="form-control" name="stuSearch" type="text" placeholder="请输入学生学号或姓名">
 		        </div>
-		        <button type="button" id="stuSearchBtn" class="btn btn-default">搜索</button>
+		        <button type="button" id="stuSearchBtn" class="btn btn-default"><span class="glyphicon glyphicon-search" aria-hidden="true"></span>搜索</button>
 		      </form>
 	      </c:if>
 	      <ul class="nav navbar-nav navbar-right">
 	        <li class="dropdown">
-	          <a href="#" class="dropdown-toggle" data-toggle="dropdown">${loginUser.name} <span class="caret"></span></a>
+	          <a href="#" class="dropdown-toggle" data-toggle="dropdown"><span class="glyphicon glyphicon-user" aria-hidden="true"></span>${loginUser.name}&nbsp;<span class="caret"></span></a>
 	          <ul class="dropdown-menu" role="menu">
 	            <li><a id="showRevisePwdPage" href="javascript:void(0)">更改密码</a></li>
 	            <li class="divider"></li>
@@ -230,7 +227,16 @@
 	</nav>
 	<div class="showContent">
 	</div>
-	<div class="showModal">
+	<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+	  <div class="modal-dialog modal-lg" role="document" style="width: 60%">
+	    <div class="modal-content">
+	      <div class="modal-header">
+	        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+	      </div>
+	      <div class="showModal modal-body">
+	      </div>
+	    </div>
+	  </div>
 	</div>
 <!--引入wangEditor.js 注意：javaScript必须放在body最后，否则可能会出现问题-->
 <script type="text/javascript" src="resources/wangEditor-2.1.23/dist/js/wangEditor.min.js"></script>

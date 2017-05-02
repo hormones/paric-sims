@@ -6,7 +6,16 @@
 <script type="text/javascript">
     var editor = new wangEditor('content');
  	editor.config.menus = $.map(wangEditor.config.menus, function(item, key) {
+ 		/* if (item === 'source') {
+            return null;
+        } */
+        if (item === 'video') {
+            return null;
+        }
         if (item === 'insertcode') {
+            return null;
+        }
+        if (item === 'location') {
             return null;
         }
         return item;
@@ -29,11 +38,11 @@
 		<div class="form-group" style="margin-top: 40px;">
 		<label for="content" class="col-sm-1 control-label">内容</label>
 		<div class="col-sm-11">
-			<textarea id="content" class="content form-control" name="content" rows="25"></textarea>
+			<textarea id="content" class="content form-control" name="content" rows="15"></textarea>
 		</div>
 	</div>
 	<div class="form-group" style="margin-top: 40px;">
-		<div class="col-sm-1 col-md-offset-11">
+		<div class="col-sm-2 col-md-offset-10">
 			<button type="button" id="saveAnnouncementBtn" class="form-control btn btn-info">保存</button>
 		</div>
 	</div>

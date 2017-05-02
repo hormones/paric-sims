@@ -16,7 +16,7 @@ public class StudentDaoImpl extends BaseCharacterDaoImpl<Student> implements Stu
 	@Override
 	public List<Object[]> loadStudentTable(String teacherName, String instituteName,String majorName,String klassName, int pageNumber, int pageSize) {
 		String hql;
-		hql = "SELECT s.userno,s.name,s.gender,s.klass.name FROM Student s";
+		hql = "SELECT s.userno,s.name,s.gender,s.klass.major.institute.name,s.klass.major.name,s.klass.name FROM Student s";
 		if(StringUtils.isNotBlank(teacherName)){
 			hql += " LEFT JOIN s.courseList.teacher t WHERE t.name='" + teacherName + "'";
 		} else {
