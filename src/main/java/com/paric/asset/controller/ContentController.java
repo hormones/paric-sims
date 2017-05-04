@@ -12,9 +12,11 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.paric.asset.model.Announcement;
 import com.paric.asset.model.Institute;
 import com.paric.asset.model.Klass;
 import com.paric.asset.model.Major;
+import com.paric.asset.service.AnnouncementService;
 import com.paric.asset.service.BaseService;
 
 @Controller
@@ -25,10 +27,16 @@ public class ContentController<T> {
 	@Autowired
 	private BaseService baseService;
 	
+	@Autowired
+	private AnnouncementService announcementService;
+	
 	//跳转到公告页面
 	@RequestMapping(params = "dispatch=toAnnouncement")
-	public String toAnnouncement(){
-		return "announcement/announcement";
+	public ModelAndView toAnnouncement(){
+		ModelAndView mv = new ModelAndView("announcement/announcement");
+		List<Announcement> announcementList = announcementService.findAll(Announcement.class);
+		mv.addObject("announcementList", announcementList);
+		return mv;
 	}
 	
 	//跳转到修改密码页面
