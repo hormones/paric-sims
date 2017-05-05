@@ -1,32 +1,33 @@
+/*announcement.jsp*/
 $(document).ready(function(){
 	
-	var announcementId;
+	//初始化查看公告
+	$("#annoumcementContent").load("content.do?dispatch=toViewAnnouncement&id=" + announcementId);
 	
-	initAnnouncement();
-	
-	$(".viewAnnouncementBtn").click(function (e) {
+	//点击滚动公告栏展示内容
+	$(".announcementList").on("click",".viewAnnouncementBtn",function(e){
 		e.preventDefault();
+		$('#myTabs a:first').tab('show');
 		announcementId = $(this).children("input").val();
-		$("#annoumcementContent").load("content.do?dispatch=toViewAnnouncement&announcementId=" + announcementId);
+		$("#annoumcementContent").load("content.do?dispatch=toViewAnnouncement&id=" + announcementId);
 	});
 	
+	//公告栏菜单
 	$('#myTabs a').click(function (e) {
 		e.preventDefault();
 		$(this).tab('show');
 		var clickBtn = $(this).html();
-		if("查看公告" == clickBtn){
-			$("#annoumcementContent").load("content.do?dispatch=toViewAnnouncement&announcementId=" + announcementId);
-		} else if("修改公告" == clickBtn){
-			$("#annoumcementContent").load("content.do?dispatch=toModifyOrAddAnnouncement");
-		} else if("新增公告" == clickBtn){
+		if("查看公告" == clickBtn) {
+			$("#annoumcementContent").load("content.do?dispatch=toViewAnnouncement&id=" + announcementId);
+		} else if("修改公告" == clickBtn) {
+			$("#annoumcementContent").load("content.do?dispatch=toModifyOrAddAnnouncement&id=" + announcementId);
+		} else if("新增公告" == clickBtn) {
 			$("#annoumcementContent").load("content.do?dispatch=toModifyOrAddAnnouncement");
 		}
 	});
 	
-	
 });
 
-//初始化announcement的Content
-function initAnnouncement(){
-	$("#annoumcementContent").load("content.do?dispatch=toViewAnnouncement&announcementId=" + announcementId);
-}
+/*viewAnnouncement.jsp*/
+
+/*modifyOrAddAnnouncement.jsp*/

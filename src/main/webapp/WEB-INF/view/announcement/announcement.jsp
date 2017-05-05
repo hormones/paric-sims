@@ -24,6 +24,9 @@ var options = {
 	    onToDo: null //回调函数
 	}; 
 $(".announcementList").bootstrapNews(options);
+
+var announcementId = "${announcementList.get(0).id }";
+
 </script>
 <div id="announcementDiv" class="col-md-12">
 	<div class="col-md-4">
@@ -37,6 +40,7 @@ $(".announcementList").bootstrapNews(options);
 				<div class="row">
 					<div class="col-xs-12">
 						<ul class="announcementList">
+							<%-- 加载左侧滚动公告栏 --%>
 							<c:forEach var="announcement" items="${announcementList }">
 								<li class="news-item">
 									<table cellpadding="4">

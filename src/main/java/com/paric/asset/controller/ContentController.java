@@ -78,13 +78,21 @@ public class ContentController<T> {
 	
 	//跳转到查看公告页面
 	@RequestMapping(params = "dispatch=toViewAnnouncement")
-	public String toViewAnnouncement(){
-		return "announcement/viewAnnouncement";
+	public ModelAndView toViewAnnouncement(Long id){
+		ModelAndView mv = new ModelAndView("announcement/viewAnnouncement");
+		Announcement announcement = announcementService.findById(Announcement.class, id);
+		mv.addObject("announcement", announcement);
+		return mv;
 	}
 	
 	//跳转到修改和新增公告页面
 	@RequestMapping(params = "dispatch=toModifyOrAddAnnouncement")
-	public String toModifyOrAddAnnouncement(){
-		return "announcement/modifyOrAddAnnouncement";
+	public ModelAndView toModifyOrAddAnnouncement(Long id){
+		ModelAndView mv = new ModelAndView("announcement/modifyOrAddAnnouncement");
+		if(null != id) {
+			Announcement announcement = announcementService.findById(Announcement.class, id);
+			mv.addObject("announcement", announcement);
+		}
+		return mv;
 	}
 }

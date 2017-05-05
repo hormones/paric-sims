@@ -11,11 +11,26 @@
 <script type="text/javascript">
 $(document).ready(function(){
 	$(".showModal").load("content.do?dispatch=toStudentInfo");
-	var instituteName = "${instituteName}";
-	var majorName = "${majorName}";
-	var klassName = "${klassName}";
+	var instituteName = "${instituteName }";
+	var majorName = "${majorName }";
+	var klassName = "${klassName }";
 	initTable(instituteName, majorName, klassName);
 });
+
+//操作一列增加2个按钮：查看和删除(不能放在$(document).ready()中...)
+function operateFormatter(value, row, index) {
+	if("Administrator" == "${identity }"){
+		return [
+		        '<button type="button" class="viewStudentDetail btn btn-default  btn-sm" style="margin-left:15px;">查 看</button>',
+		        '<button type="button" class="deleteStudent btn btn-default  btn-sm" style="margin-left:15px;">删 除</button>',
+		     ].join('');
+	} else {
+		return [
+	         	'<button type="button" class="viewStudentDetail btn btn-default  btn-sm" style="margin-left:5%;">查 看</button>',
+	         ].join('');
+	}
+};
+
 </script> 
 <div>
 	<ul class="breadcrumb" style="font-size: 20px; background-color: white;">
@@ -44,7 +59,7 @@ $(document).ready(function(){
 			<th data-field="majorName">专业</th>
 			<th data-field="klassName">班级</th>
 			<th data-field="gender">性别</th>
-			<th data-field="operate" data-formatter="operateFormatter" data-events="operateEvents" data-width="20%">操作</th>
+			<th data-field="operate" data-formatter="operateFormatter" data-events="operateEvents" data-width="15%">操作</th>
 		</tr>
 	</thead>
 </table>

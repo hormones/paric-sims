@@ -24,6 +24,7 @@ public class Course extends BaseModel implements Serializable {
 	private int courseno;  //课程号  
 	private int period;   //课时数  
 	private String term;   //上课学期  
+	private String category;   //课程类别 
 	private String property;   //课程性质  
 	
 	//@ManyToOne
@@ -51,6 +52,13 @@ public class Course extends BaseModel implements Serializable {
 	}
 	public void setTerm(String term) {
 		this.term = term;
+	}
+
+	public String getCategory() {
+		return category;
+	}
+	public void setCategory(String category) {
+		this.category = category;
 	}
 	
 	public String getProperty() {

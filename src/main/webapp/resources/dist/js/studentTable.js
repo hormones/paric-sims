@@ -47,20 +47,22 @@ function initTable(instituteName, majorName, klassName) {
 	});
 };
 
-//操作一列增加2个按钮：查看和删除
-function operateFormatter(value, row, index) {
-    return [
-        '<button type="button" class="viewStudentDetail btn btn-default  btn-sm" style="margin-left:15px;">查 看</button>',
-        '<button type="button" class="deleteStudent btn btn-default  btn-sm" style="margin-left:15px;">删 除</button>',
-   ].join('');
-};
-
 //为查看和删除按钮添加事件
 window.operateEvents = {
 	'click .viewStudentDetail': function (e, value, row, index) {
 		viewOneStuInfo(row.userno);
 	},
 	'click .deleteStudent': function (e, value, row, index) {
-		viewOneStuInfo(row.userno);
+		var statu = confirm("你确定要删除该学生吗?");
+		if(statu){
+			$.post("student.do?dispatch=deleteOneStudent", {"userno":row.userno}, function(data){
+				if(data.success){
+					var klassName = $("#klassName").html();
+					var majorName = $("#majorName").html();
+					var instituteName = $("#instituteName").html();
+					$(".showContent").load("content.do?dispatch=toStudentTable&instituteName="+instituteName+"&majorName="+majorName+"&klassName="+klassName);
+				}
+			},"json");
+		}
 	},
 };

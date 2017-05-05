@@ -5,21 +5,10 @@
 		<h1 class="panel-title text-center" style="font-size: 30px;">公 告</h1>
 	</div>
 	<div class="panel-body" style="margin-top: -20px;">
-		<h3 class="text-center">Lorem ipsum dolor sit amet</h3>
-		<p style="text-indent: 2em; height: 400px; font-size: 20px; overflow:auto;">
-			Lorem ipsum dolor sit amet, consectetur adipiscingelit. Nullam in venenatis enim
-			Lorem ipsum dolor sit amet, consectetur adipiscingelit. Nullam in venenatis enim
-			Lorem ipsum dolor sit amet, consectetur adipiscingelit. Nullam in venenatis enim
-			Lorem ipsum dolor sit amet, consectetur adipiscingelit. Nullam in venenatis enim
-			Lorem ipsum dolor sit amet, consectetur adipiscingelit. Nullam in venenatis enim
-			Lorem ipsum dolor sit amet, consectetur adipiscingelit. Nullam in venenatis enim
-			Lorem ipsum dolor sit amet, consectetur adipiscingelit. Nullam in venenatis enim
-			Lorem ipsum dolor sit amet, consectetur adipiscingelit. Nullam in venenatis enim
-			Lorem ipsum dolor sit amet, consectetur adipiscingelit. Nullam in venenatis enim
-			Lorem ipsum dolor sit amet, consectetur adipiscingelit. Nullam in venenatis enim
-			Lorem ipsum dolor sit amet, consectetur adipiscingelit. Nullam in venenatis enim
-			Lorem ipsum dolor sit amet, consectetur adipiscingelit. Nullam in venenatis enim
-		</p> 
+		<h3 class="text-center">${announcement.name }</h3>
+		<div style="text-indent: 2em; height: 400px; font-size: 20px; overflow:auto;">
+			${announcement.content }
+		</div> 
 	</div>
-	<div class="panel-footer" style="height:40px;"><sapn class="pull-right">Panel footer</sapn></div>
+	<div class="panel-footer" style="height:40px;"><sapn class="pull-right">${announcement.modifyTime }</sapn></div>
 </div>

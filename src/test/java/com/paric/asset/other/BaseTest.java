@@ -23,6 +23,7 @@ import com.paric.asset.model.Klass;
 import com.paric.asset.model.Major;
 import com.paric.asset.model.Student;
 import com.paric.asset.model.Teacher;
+import com.paric.asset.service.AnnouncementService;
 import com.paric.asset.service.BaseCharacterService;
 import com.paric.asset.service.BaseService;
 import com.paric.asset.service.KlassService;
@@ -52,6 +53,9 @@ public class BaseTest {
 	
 	@Autowired
 	private StudentService studentService;
+	
+	@Autowired
+	private AnnouncementService announcementService;
 	
 	@Autowired
 	private KlassService klassService;
@@ -93,7 +97,7 @@ public class BaseTest {
 	@Test
 	@Rollback(false)
 	public void test_klasses(){
-		String filePath=this.getClass().getClassLoader().getResource("./instituteAndMajor/instituteAndMajor.json").getPath(); //获得文件路径
+		String filePath=this.getClass().getClassLoader().getResource("./baseData/instituteAndMajor.json").getPath(); //获得文件路径
 		String JsonContext = ReadFileUtil.getInstance().ReadFile(filePath); //读取文件
 		JSONArray instituteArray = JSONArray.fromObject(JsonContext); //将文件解析为JSONArray
 		for (int i=0; i< instituteArray.size(); i++ ) {
@@ -187,7 +191,7 @@ public class BaseTest {
 	@Test
 	@Rollback(false)
 	public void test_students(){
-		String filePath=this.getClass().getClassLoader().getResource("./studentList/studentList.json").getPath(); //获得文件路径
+		String filePath=this.getClass().getClassLoader().getResource("./baseData/studentList.json").getPath(); //获得文件路径
 		String JsonContext = ReadFileUtil.getInstance().ReadFile(filePath); //读取文件
 		JSONArray sudentsArray = JSONArray.fromObject(JsonContext); //将文件解析为JSONArray
 		for (int i=0; i< sudentsArray.size(); i++ ) {
@@ -227,13 +231,20 @@ public class BaseTest {
 	@Rollback(false)
 	public void test_announcement(){
 		Announcement announcement = new Announcement();
-		Administrator administrator = (Administrator) baseService.findByName(Administrator.class, "王大锤");
-		announcement.setName("创建文明校园倡议书6");
+		Administrator administrator = (Administrator) baseCharacterService.findByName(Administrator.class, "王大锤");
+		announcement.setName("创建文明校园倡议书1");
 		announcement.setContent("2017年的第一缕春风和朝阳，伴随着我们一起来到了这个美丽的校园。春风吹绿了小草，绿树抽出了新枝，草坪、蓝天和一栋栋崭新的楼宇都成了校园里美丽的风景线。但你已经有多久没有见到清晨第一缕阳光？有多久不曾感受晨读的乐趣？是否曾为了多睡几分钟拎着早餐踩点进教室甚至迟到？");
 		announcement.setModifyTime(new Date(System.currentTimeMillis()));
 		announcement.setAdministrator(administrator);
-		baseService.add(announcement);
+		announcementService.add(announcement);
 		logger.debug(announcement.getName());
+	}
+	
+	//
+	@Test
+	@Rollback(false)
+	public void test_course(){
+		
 	}
 	
 	//角色登录
@@ -241,8 +252,8 @@ public class BaseTest {
 	@Test
 	@Rollback(true)
 	public void test_login(){
-		//String identity = "Administrator",userno="admin";
-		String identity = "Teacher",userno="60001";
+		String identity = "Administrator",userno="admin";
+		//String identity = "Teacher",userno="60001";
 		//String identity = "Student",userno="20160001";
 		String userpwd = "123456";
 		Class clazz;

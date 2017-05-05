@@ -1,5 +1,8 @@
 package com.paric.asset.controller;
 
+import java.util.HashMap;
+import java.util.Map;
+
 import javax.servlet.http.HttpServletRequest;
 
 import org.apache.commons.lang.StringUtils;
@@ -10,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.paric.asset.model.BaseCharacter;
+import com.paric.asset.model.Student;
 import com.paric.asset.service.StudentService;
 
 import net.sf.json.JSONObject;
@@ -40,6 +44,20 @@ public class StudentController {
 			jsonObject =  studentService.getStuInfoData(keyword);
 		}
 		return jsonObject.toString();
+	}
+	
+	@RequestMapping(params = "dispatch=deleteOneStudent")
+	@ResponseBody
+	public Map<String, Object> deleteOneStudent(HttpServletRequest request, @RequestParam String userno){
+		Map<String, Object> map = new HashMap<String, Object>();
+		Student student = studentService.findByUserno(Student.class, userno);
+		map.put("success", false);
+		if(null != student){
+			studentService.delete(student);
+			map.put("success", true);
+			System.out.println("删除了学生: " + student.getName());
+		}
+		return map;
 	}
 
 }
