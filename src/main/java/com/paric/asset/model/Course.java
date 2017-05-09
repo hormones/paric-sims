@@ -9,7 +9,6 @@ import javax.persistence.FetchType;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
-import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 @Entity
@@ -27,11 +26,11 @@ public class Course extends BaseModel implements Serializable {
 	private String category;   //课程类别 
 	private String property;   //课程性质  
 	
-	//@ManyToOne
-	private Teacher teacher; //教师entity
+	//@ManyToMany
+	private List<Teacher> teacherList; //教师entity
 	
 	//@ManyToMany
-	private List<Student> student; //学生entity
+	private List<Student> studentList; //学生entity
 	
 	public int getCourseno() {
 		return courseno;
@@ -68,23 +67,26 @@ public class Course extends BaseModel implements Serializable {
 		this.property = property;
 	}
 	
-	@ManyToOne(cascade=CascadeType.MERGE,fetch=FetchType.LAZY,targetEntity=Teacher.class)
-	public Teacher getTeacher() {
-		return teacher;
+	@ManyToMany(cascade = CascadeType.PERSIST, fetch = FetchType.LAZY)
+	@JoinTable(name = "teacher_course",
+	joinColumns = {@JoinColumn(name = "course_id", referencedColumnName = "id")},
+	inverseJoinColumns = {@JoinColumn(name = "teacher_id", referencedColumnName ="id")})
+	public List<Teacher> getTeacherList() {
+		return teacherList;
 	}
-	public void setTeacher(Teacher teacher) {
-		this.teacher = teacher;
+	public void setTeacherList(List<Teacher> teacherList) {
+		this.teacherList = teacherList;
 	}
 	
 	@ManyToMany(cascade = CascadeType.PERSIST, fetch = FetchType.LAZY)
 	@JoinTable(name = "score",
 	joinColumns = {@JoinColumn(name = "course_id", referencedColumnName = "id")},
 	inverseJoinColumns = {@JoinColumn(name = "student_id", referencedColumnName ="id")})
-	public List<Student> getStudent() {
-		return student;
+	public List<Student> getStudentList() {
+		return studentList;
 	}
-	public void setStudent(List<Student> student) {
-		this.student = student;
+	public void setStudentList(List<Student> studentList) {
+		this.studentList = studentList;
 	}
 
 }

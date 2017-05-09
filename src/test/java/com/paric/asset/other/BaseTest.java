@@ -79,19 +79,6 @@ public class BaseTest {
 		logger.debug(administrator.getName());
 	}
 	
-	//插入一位教师
-	@SuppressWarnings("unchecked")
-	@Test
-	@Rollback(false)
-	public void test_teacher(){
-		Teacher teacher = new Teacher();
-		teacher.setName("王二锤");
-		teacher.setUserno("60001");
-		teacher.setUserpwd("123456");
-		baseService.add(teacher);
-		logger.debug(teacher.getName());
-	}
-	
 	//插入学院、专业和班级
 	@SuppressWarnings("unchecked")
 	@Test
@@ -185,6 +172,20 @@ public class BaseTest {
 		}
 	}
 	
+	//插入一位教师
+	@SuppressWarnings("unchecked")
+	@Test
+	@Rollback(false)
+	public void test_teacher(){
+		Institute institute = (Institute) baseService.findByName(Institute.class, "理学院");
+		Teacher teacher = new Teacher();
+		teacher.setName("王二锤");
+		teacher.setUserno("60001");
+		teacher.setUserpwd("123456");
+		teacher.setInstitute(institute);
+		baseService.add(teacher);
+		logger.debug(teacher.getName());
+	}
 	
 	//插入学生
 	@SuppressWarnings("unchecked")
@@ -277,7 +278,7 @@ public class BaseTest {
 	@Test
 	@Rollback(true)
 	public void test_JSON(){
-		String data = studentService.loadStudentTable(null, "电气与信息工程学院", "电子信息工程", "一班", 1, 10);
+		String data = studentService.loadStudentTable(null, "外国语学院", "国际商务", "一班", 1, 10);
 		System.out.println("结果: "+data);
 	}
 	
