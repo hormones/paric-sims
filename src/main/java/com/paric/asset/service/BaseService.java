@@ -39,7 +39,7 @@ public interface BaseService<T> {
 	public T findByName(Class<T> clazz,String name);
 	
 	/**
-	 * 通过id序列查询对象
+	 * 通过id序列查询多个对象
 	 * @param clazz
 	 * @param ids 格式为eg:1,2,3
 	 * @return
@@ -83,7 +83,7 @@ public interface BaseService<T> {
 	public void batchUpdate(List<T> clazz,int size);
 	
 	/**
-	 * 查询所有对象(limit)
+	 * 查询所有对象(limitByPage)
 	 * @param clazz
 	 * @param firstRow 起始页
 	 * @param rows 每页显示的条数
