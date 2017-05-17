@@ -1,2 +1,2 @@
-# paric.asset
-sims
+# paric-sims
+
