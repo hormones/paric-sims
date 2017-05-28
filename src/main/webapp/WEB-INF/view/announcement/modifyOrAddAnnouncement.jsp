@@ -25,11 +25,15 @@ $(document).ready(function(){
     
     <%-- 修改和新增公告 --%>
 	$("#saveAnnouncementBtn").click(function(){
-		$.post("announcement.do?dispatch=modifyOrAddAnnouncement", $("#announcementForm").serialize(), function(data){
-			if(data.success){
-				$(".showContent").load("content.do?dispatch=toAnnouncement");
-			}
-		},"json");
+		if(""==$.trim($("#name").val())){
+			alert("标题不能为空！");
+		} else {
+			$.post("announcement.do?dispatch=modifyOrAddAnnouncement", $("#announcementForm").serialize(), function(data){
+				if(data.success){
+					$(".showContent").load("content.do?dispatch=toAnnouncement");
+				}
+			},"json");
+		}
 	});
 })
 </script>

@@ -11,10 +11,13 @@ import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.paric.asset.model.Administrator;
 import com.paric.asset.model.Announcement;
+import com.paric.asset.model.BaseCharacter;
+import com.paric.asset.model.Student;
 import com.paric.asset.service.AnnouncementService;
 import com.paric.asset.service.BaseCharacterService;
 
@@ -65,10 +68,25 @@ public class AnnouncementController {
 	}
 	
 	//删除公告
-	@RequestMapping(params = "dispatch=deleteAnnouncement")
-	public void deleteAnnouncement(HttpServletRequest request, HttpServletResponse response, String id){
+	@RequestMapping(params = "dispatch=deleteOneAnnouncement")
+	@ResponseBody
+	public Map<String, Object> deleteAnnouncement(HttpServletRequest request, HttpServletResponse response, String id){
+		Map<String, Object> map = new HashMap<String, Object>();
 		Announcement announcement = announcementService.findById(Announcement.class, Long.parseLong(id));
-		announcementService.delete(announcement);
+		map.put("success", false);
+		if(null != announcement){
+			announcementService.delete(announcement);
+			map.put("success", true);
+			System.out.println("删除了公告: " + announcement.getName());
+		}
+		return map;
+	}
+	
+	//查看所有公告
+	@RequestMapping(params = "dispatch=viewAnnouncementTable")
+	@ResponseBody
+	public String viewAnnouncementTable(HttpServletRequest request, @RequestParam Integer pageNumber, Integer pageSize){
+		return announcementService.loadAnnouncementTable(pageNumber, pageSize);
 	}
 
 }

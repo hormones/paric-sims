@@ -71,10 +71,10 @@
               </java.beans.PropertyChangeSupport>
             </listeners>
             <constraint>
-              <height>43</height>
+              <height>50</height>
               <width>124</width>
-              <x>252</x>
-              <y>13</y>
+              <x>345</x>
+              <y>9</y>
             </constraint>
             <sourceConnections/>
             <targetConnections>
@@ -194,10 +194,10 @@
                     </java.beans.PropertyChangeSupport>
                   </listeners>
                   <constraint>
-                    <height>43</height>
+                    <height>66</height>
                     <width>192</width>
-                    <x>350</x>
-                    <y>555</y>
+                    <x>476</x>
+                    <y>611</y>
                   </constraint>
                   <sourceConnections/>
                   <targetConnections>
@@ -304,8 +304,8 @@
                         <constraint>
                           <height>56</height>
                           <width>100</width>
-                          <x>736</x>
-                          <y>95</y>
+                          <x>796</x>
+                          <y>115</y>
                         </constraint>
                         <sourceConnections/>
                         <targetConnections>
@@ -532,8 +532,8 @@
                   <constraint>
                     <height>-1</height>
                     <width>-1</width>
-                    <x>413</x>
-                    <y>361</y>
+                    <x>456</x>
+                    <y>365</y>
                   </constraint>
                   <sourceConnections>
                     <net.java.amateras.uml.classdiagram.model.GeneralizationModel reference="../../.."/>
@@ -579,10 +579,10 @@
                           </java.beans.PropertyChangeSupport>
                         </listeners>
                         <constraint>
-                          <height>53</height>
+                          <height>62</height>
                           <width>115</width>
-                          <x>722</x>
-                          <y>486</y>
+                          <x>845</x>
+                          <y>501</y>
                         </constraint>
                         <sourceConnections/>
                         <targetConnections>
@@ -887,10 +887,10 @@
                           </java.beans.PropertyChangeSupport>
                         </listeners>
                         <constraint>
-                          <height>54</height>
+                          <height>65</height>
                           <width>100</width>
-                          <x>736</x>
-                          <y>366</y>
+                          <x>851</x>
+                          <y>365</y>
                         </constraint>
                         <sourceConnections/>
                         <targetConnections>

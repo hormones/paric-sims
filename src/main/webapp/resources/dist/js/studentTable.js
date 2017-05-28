@@ -1,5 +1,5 @@
 function initTable(instituteName, majorName, klassName) {
-	//先销毁表格  
+	//先销毁表格
 	$('#studentTable').bootstrapTable('destroy');
 	//初始化表格,动态从服务器加载数据  
 	$("#studentTable").bootstrapTable({

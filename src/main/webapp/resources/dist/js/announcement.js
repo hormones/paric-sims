@@ -23,6 +23,8 @@ $(document).ready(function(){
 			$("#annoumcementContent").load("content.do?dispatch=toModifyOrAddAnnouncement&id=" + announcementId);
 		} else if("新增公告" == clickBtn) {
 			$("#annoumcementContent").load("content.do?dispatch=toModifyOrAddAnnouncement");
+		} else if("全部公告" == clickBtn) {
+			$("#annoumcementContent").load("content.do?dispatch=toAnnouncementTable");
 		}
 	});
 	

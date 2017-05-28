@@ -231,14 +231,16 @@ public class BaseTest {
 	@Test
 	@Rollback(false)
 	public void test_announcement(){
-		Announcement announcement = new Announcement();
-		Administrator administrator = (Administrator) baseCharacterService.findByName(Administrator.class, "王大锤");
-		announcement.setName("创建文明校园倡议书1");
-		announcement.setContent("2017年的第一缕春风和朝阳，伴随着我们一起来到了这个美丽的校园。春风吹绿了小草，绿树抽出了新枝，草坪、蓝天和一栋栋崭新的楼宇都成了校园里美丽的风景线。但你已经有多久没有见到清晨第一缕阳光？有多久不曾感受晨读的乐趣？是否曾为了多睡几分钟拎着早餐踩点进教室甚至迟到？");
-		announcement.setModifyTime(new Date(System.currentTimeMillis()));
-		announcement.setAdministrator(administrator);
-		announcementService.add(announcement);
-		logger.debug(announcement.getName());
+		for(int i=1; i<=20; i++){
+			Announcement announcement = new Announcement();
+			Administrator administrator = (Administrator) baseCharacterService.findByName(Administrator.class, "王大锤");
+			announcement.setName("创建文明校园倡议书"+i);
+			announcement.setContent("2017年的第一缕春风和朝阳，伴随着我们一起来到了这个美丽的校园。春风吹绿了小草，绿树抽出了新枝，草坪、蓝天和一栋栋崭新的楼宇都成了校园里美丽的风景线。但你已经有多久没有见到清晨第一缕阳光？有多久不曾感受晨读的乐趣？是否曾为了多睡几分钟拎着早餐踩点进教室甚至迟到？");
+			announcement.setModifyTime(new Date(System.currentTimeMillis()));
+			announcement.setAdministrator(administrator);
+			announcementService.add(announcement);
+			logger.debug(announcement.getName());
+		}
 	}
 	
 	//

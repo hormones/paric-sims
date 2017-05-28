@@ -95,4 +95,11 @@ public class ContentController<T> {
 		}
 		return mv;
 	}
+	
+	//跳转到全部公告页面
+	@RequestMapping(params = "dispatch=toAnnouncementTable")
+	public ModelAndView toAnnouncementTable(){
+		ModelAndView mv = new ModelAndView("announcement/announcementTable");
+		return mv;
+	}
 }

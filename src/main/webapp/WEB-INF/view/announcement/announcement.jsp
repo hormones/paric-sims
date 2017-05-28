@@ -58,17 +58,17 @@ var announcementId = "${announcementList.get(0).id }";
 		</div> <!-- 滚动公告栏 -->
 	</div> <!-- 公告栏左侧 -->
 	<div class="col-md-8">
-		<c:if test="${identity == 'Administrator'}">
 			<div>
 				<!-- Nav tabs -->
 				<ul id="myTabs" class="nav nav-tabs col-md-12" role="tablist">
 					<li role="presentation" class="active"><a href="#view" aria-controls="view" role="tab" data-toggle="tab">查看公告</a></li>
-					<li role="presentation"><a href="#modify" aria-controls="modify" role="tab" data-toggle="tab">修改公告</a></li>
-					<li role="presentation"><a href="#add" aria-controls="add" role="tab" data-toggle="tab">新增公告</a></li>
+					<c:if test="${identity == 'Administrator'}">
+						<li role="presentation"><a href="#modify" aria-controls="modify" role="tab" data-toggle="tab">修改公告</a></li>
+						<li role="presentation"><a href="#add" aria-controls="add" role="tab" data-toggle="tab">新增公告</a></li>
+					</c:if>
 					<li role="presentation"><a href="#all" aria-controls="all" role="tab" data-toggle="tab">全部公告</a></li>
 				</ul>
 			</div>
-		</c:if>
 		<div id="annoumcementContent" class="col-md-12">
 		</div>
 	</div>

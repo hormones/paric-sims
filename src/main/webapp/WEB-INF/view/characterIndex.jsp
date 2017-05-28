@@ -63,10 +63,10 @@
 		          	<li><a class="viewStudentTable" href="#">查看全部</a></li>
 		            <li class="divider"></li>
 		            <li class="dropdown-submenu instituteName">
-		            	<a tabindex="-1" href="javascript:;">电气与信息工程学院</a>  
+		            	<a tabindex="-1" href="javascript:;">外国语学院</a>  
 	                    <ul class="dropdown-menu">  
 	                        <li class="dropdown-submenu majorName">  
-	                            <a href="javascript:;">电子信息工程</a>  
+	                            <a href="javascript:;">国际商务</a>  
 	                            <ul class="dropdown-menu"> 
 	                            	<li><a class="klassName" href="javascript:;">全部</a></li>
 	                            	<li class="divider"></li>  
