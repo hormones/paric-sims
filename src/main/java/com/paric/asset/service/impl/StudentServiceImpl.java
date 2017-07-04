@@ -1,6 +1,7 @@
 package com.paric.asset.service.impl;
 
 import java.util.List;
+import java.util.Map;
 
 import javax.transaction.Transactional;
 
@@ -64,6 +65,11 @@ public class StudentServiceImpl extends BaseCharacterServiceImpl<Student> implem
 			jsonObject.put("note", student.getNote());
 		}
 		return jsonObject;
+	}
+
+	@Override
+	public void modifyStudent(Map<String, Object> stuMap, long id) {
+		studentDao.modifyStudent(stuMap, id);
 	}
 
 }

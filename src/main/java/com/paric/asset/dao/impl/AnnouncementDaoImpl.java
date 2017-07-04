@@ -2,7 +2,6 @@ package com.paric.asset.dao.impl;
 
 import java.util.List;
 
-import org.apache.commons.lang.StringUtils;
 import org.hibernate.Query;
 import org.springframework.stereotype.Repository;
 

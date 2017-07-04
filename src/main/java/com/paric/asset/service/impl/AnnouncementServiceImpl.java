@@ -8,7 +8,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.paric.asset.dao.AnnouncementDao;
-import com.paric.asset.dao.StudentDao;
 import com.paric.asset.model.Announcement;
 import com.paric.asset.service.AnnouncementService;
 

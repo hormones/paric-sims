@@ -8,30 +8,30 @@
 <script type="text/javascript" src="resources/dist/js/announcement.js"></script>
 <script type="text/javascript" src="resources/bootstrap-news-box/js/jquery.bootstrap.newsbox.min.js"></script>
 <script>
-var options = {
-	    newsPerPage: 5, //每页显示的新闻条数
-	    navigation: true, //是否为导航模式
-	    autoplay: true, //是否自动滚动新闻
-	    direction:'up', //新闻的滚动方向
-	    animationSpeed: 'normal', //自动滚动新闻的速度
-	    newsTickerInterval: 3000, //每隔几秒钟切换到下一条新闻
-	    pauseOnHover: true, //是否在鼠标滑过时暂停新闻滚动
-	    onStop: null, //新闻滚动停止时的回调函数
-	    onPause: null, //新闻滚动暂停时的回调函数
-	    onReset: null, //新闻滚动被重置时的回调函数
-	    onPrev: null, //滚动到前一条新闻时的回调函数
-	    onNext: null, //滚动到下一条新闻时的回调函数
-	    onToDo: null //回调函数
-	}; 
-$(".announcementList").bootstrapNews(options);
+$(document).ready(function(){
+	var options = {
+		    newsPerPage: 8, //每页显示的新闻条数
+		    navigation: true, //是否为导航模式
+		    autoplay: true, //是否自动滚动新闻
+		    direction:'up', //新闻的滚动方向
+		    animationSpeed: 'normal', //自动滚动新闻的速度
+		    newsTickerInterval: 3000, //每隔几秒钟切换到下一条新闻
+		    pauseOnHover: true, //是否在鼠标滑过时暂停新闻滚动
+		    onStop: null, //新闻滚动停止时的回调函数
+		    onPause: null, //新闻滚动暂停时的回调函数
+		    onReset: null, //新闻滚动被重置时的回调函数
+		    onPrev: null, //滚动到前一条新闻时的回调函数
+		    onNext: null, //滚动到下一条新闻时的回调函数
+		    onToDo: null //回调函数
+		}; 
+	$(".announcementList").bootstrapNews(options);
+})
 
 var announcementId = "${announcementList.get(0).id }";
 
 </script>
 <div id="announcementDiv" class="col-md-12">
-	<div class="col-md-4">
-		<div>
-		</div>
+	<div class="col-md-4" style="height: 300px;">
 		<div class="panel panel-default">
 			<div class="panel-heading">
 				<span class="glyphicon glyphicon-list-alt"></span><b>&nbsp;&nbsp;公告</b>

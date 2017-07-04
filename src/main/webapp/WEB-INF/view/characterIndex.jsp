@@ -25,7 +25,7 @@
       <script src="http://cdn.bootcss.com/respond.js/1.4.2/respond.min.js"></script>
     <![endif]-->
 
-<title>管理员</title>
+<title>主页</title>
 </head>
 <body id="mainBody">
 	<nav class="navbar navbar-default" role="navigation">
@@ -207,7 +207,7 @@
 	      <c:if test="${(identity == 'Administrator') or (identity == 'Teacher')}">
 		      <form class="navbar-form navbar-left" role="search">
 		        <div class="form-group">
-		          <input id="stuSearch" class="form-control" name="stuSearch" type="text" placeholder="请输入学生学号或姓名">
+		          <input id="stuSearch" class="form-control" name="stuSearch" type="text" placeholder="请输入学生学号">
 		        </div>
 		        <button type="button" id="stuSearchBtn" class="btn btn-default"><span class="glyphicon glyphicon-search" aria-hidden="true"></span>搜索</button>
 		      </form>

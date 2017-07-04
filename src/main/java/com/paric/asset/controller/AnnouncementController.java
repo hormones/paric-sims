@@ -16,8 +16,6 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.paric.asset.model.Administrator;
 import com.paric.asset.model.Announcement;
-import com.paric.asset.model.BaseCharacter;
-import com.paric.asset.model.Student;
 import com.paric.asset.service.AnnouncementService;
 import com.paric.asset.service.BaseCharacterService;
 

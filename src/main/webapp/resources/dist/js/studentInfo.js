@@ -5,4 +5,14 @@ $(document).ready(function(){
 		  autoclose:true,//选中关闭
 		  language:  'zh-CN', 
 	});
+	
+
 });
+
+$("#saveStuInfoBtn").click(function(){
+	$.post("student.do?dispatch=modifyOrAddStudent",$("#studentInfoForm").serialize(),function(data){
+		if(data.success){
+			alert("修改成功！");
+		}
+	},"json");
+})

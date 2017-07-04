@@ -1,6 +1,7 @@
 package com.paric.asset.dao.impl;
 
 import java.util.List;
+import java.util.Map;
 
 import org.apache.commons.lang.StringUtils;
 import org.hibernate.Query;
@@ -8,6 +9,7 @@ import org.springframework.stereotype.Repository;
 
 import com.paric.asset.dao.StudentDao;
 import com.paric.asset.model.Student;
+import com.paric.asset.util.HQLUtil;
 
 @Repository("studentDao")
 public class StudentDaoImpl extends BaseCharacterDaoImpl<Student> implements StudentDao {
@@ -67,6 +69,16 @@ public class StudentDaoImpl extends BaseCharacterDaoImpl<Student> implements Stu
 			return (Student) query.list().get(0);
 		}
 		return null;
+	}
+	
+	@Override
+	public void modifyStudent(Map<String, Object> stuMap, long id) {
+		String hql = "UPDATE Student s SET ";
+		hql += HQLUtil.connectString(stuMap, "s");
+		hql += " WHERE s.id=" + id;
+		logger.debug(hql);
+		Query query = this.sessionFactory.getCurrentSession().createQuery(hql);
+		query.executeUpdate();
 	}
 
 }

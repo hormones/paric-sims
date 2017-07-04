@@ -8,7 +8,7 @@
 <script type="text/javascript" src="resources/bootstrap-datetimepicker/js/bootstrap-datetimepicker.zh-CN.js"></script>
 <script type="text/javascript" src="resources/dist/js/studentInfo.js"></script>
 
-<form class="form-horizontal" role="form">
+<form id="studentInfoForm" class="form-horizontal" role="form">
 	<div class="form-group" style="margin-top: 5px;">
 		<div class="col-sm-12 text-center">
 			<h2>学生个人信息管理</h2>
@@ -17,7 +17,7 @@
 	<div class="form-group" style="margin-top: 30px;">
 		<label for="userno" class="col-sm-1 col-md-offset-1 control-label">学号</label>
 		<div class="col-sm-3">
-			<input type="text" id="userno" class="userno form-control" name="userno" placeholder="请输入学号" disabled/>
+			<input type="text" id="userno" class="userno form-control" name="userno" placeholder="请输入学号"/>
 		</div>
 		<label for="name" class="col-sm-1 col-md-offset-1 control-label">姓名</label>
 		<div class="col-sm-3">
